@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Personal Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <meta name ="author" content="QixiangLiu">
+  <!-- <meta http-equiv="refresh" content="30"> -->
+  <link rel="stylesheet" type="text/css" href="../css/blog.css">
+  <script src="../js/time.js"></script>
+
+</head>
+<body onload="getTime()">
+  <!-- ID is unique and Class can be repeated-->
+  <div class="topnav">
+    <a class="active" href="../../index.html">Home</a>
+    <a href="#">Link</a>
+    <a href="#">Link</a>
+    <div class="topnav-right">
+    <a href="#search">Search</a>
+    <a href="#about">About</a>
+  </div>
+  </div>
+  <div id="header">
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 6</div>
+        <img src="../picture/blog_img1.jpeg" style ="width:100%">
+        <div class="text">The Prairie</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 6</div>
+        <img src="../picture/blog_img2.jpeg" style="width:100%">
+        <div class="text">The Lake</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 6</div>
+        <img src="../picture/blog_img3.jpeg" style="width:100%">
+        <div class="text">The Sea</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">4 / 6</div>
+        <img src="../picture/blog_img4.jpeg" style="width:100%">
+        <div class="text">The City</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">5 / 6</div>
+        <img src="../picture/blog_img5.jpg" style="width:100%">
+        <div class="text">The Earth</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">6 / 6</div>
+        <img src="../picture/blog_img6.jpeg" style="width:100%">
+        <div class="text">The Mountains</div>
+      </div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlides(1)"></span>
+      <span class="dot" onclick="currentSlides(2)"></span>
+      <span class="dot" onclick="currentSlides(3)"></span>
+      <span class="dot" onclick="currentSlides(4)"></span>
+      <span class="dot" onclick="currentSlides(5)"></span>
+      <span class="dot" onclick="currentSlides(6)"></span>
+    </div>
+    <script src="../js/blog.js"></script>
+  </div>
+  <div id="main">
+    <div class="row">
+      <div class="leftColumn">
+        <div class="card">
+          <h3>Time Clock</h3>
+          <!--setTimeout实时显示时间-->
+            <div id="date1"></div>
+        </div>
+        <div class="card">
+          <h3>Calendar</h3>
+          <div class="calendar" id="calendar">
+          <script type="text/javascript" src="../js/calendar.js"></script>
+          </div>
+      </div>
+      <div class ="card">
+        <div class="subject">
+          <h3>Subject</h3>
+          <h4>2018 Spring</h4>
+          <ul style="list-style-type:disc">
+            <li><a href="#">EECS268</a></li>
+            <li><a href="#">EECS368</a></li>
+            <li><a href="#">EECS448</a></li>
+            <li><a href="#">EECS510</a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="rightColumn">
+          <h2>Blog</h2>
+          <button class="accordion">Introduction</button>
+          <div class="panel">
+            <p style="text-indent:50px;">
+              I am Qixiang Liu. I am a KU junior student. In 2018 Spring, I took the EECS448 course
+              and the labs of the class is about HTML, CSS, JavaScript, PHP, and Database... I was
+              interested in the content. Therefore, I started to design the website on KU web page.
+              I tried to know more about the Lab class. Also, I discussed my study experience and my
+              dreams.<br>
+              <strong>* my English is not good. I try to write my blogs carefully. If I cannot explain
+              knowledge clearly, I are likely to use Chinese. 一切以中文为标准!</strong>
+            </p>
+          </div>
+          <button class="accordion">Experience</button>
+          <div class="panel">
+            <p style="text-indent:50px;">
+              When I started to learn HTML and CSS, it was not difficult for me to learn them.
+              First, thank the W3shool website to provide assistance because there are
+              many useful and important resources about HTML and CSS. However, when i started to write
+              codes, I often spell tags and attributes in HTML and CSS properties incorrectly. I found
+              if I wanted to remember important elements, I had to practice writing codes again and
+              again. Therefore, I began creating the web page to improve my skills.<br>
+              <strong>* Through learning, i was not limited to how to write basic HTML and CSS. The website
+              design is more important than basic elements.(基础知识可以通过查阅资料轻松获得，但是好的页面设计
+              需要耗费许多时间去画下来！)</strong><br>
+            </p>
+            <p style="text-indent:50px;">
+              JavaScript is a complicated language.
+            </p>
+          </div>
+
+          <button class="accordion">Goal</button>
+          <div class="panel">
+            <p style="text-indent:50px;">
+              I have three goals totally. First, my GPA is more than 3.5. Second, I decide to be a game
+              designer when I chose the ComputerScience. Third, as I will become a billonaire in the future,
+              I am going toinvest educationin order to modify structure of education in China.
+              *There are many suverys to help me know more about what the best game is and what education do
+              you like.
+            </p>
+          </div>
+          <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+          </script>
+      </div>
+
+    </div>
+  </div>
+  <div id="footer">
+    <footer>
+      Copyright &copy; Qixiang Liu <br>
+      Thank W3Schools.com to provide resources; <br>
+      Thank <a href="http://www.jb51.net/article/88600.htm">(脚本之家)</a> to make calendar; <br>
+    </footer>
+  </div>
+
+</body>
+</html>
