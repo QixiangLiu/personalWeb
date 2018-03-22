@@ -11,8 +11,6 @@ body{
   font-family: Times;
   background: #f1f1f1;
   margin: 0px;
-
-
   /*
   background shorthand property
     background-color
@@ -25,8 +23,8 @@ body{
 .topnav {
     overflow: hidden;
     background-color: #333;
-    position: fixed;
-    top: 0;
+    top:0;
+    position:fixed;
     width: 100%;
 }
 
@@ -54,6 +52,20 @@ body{
     background-color: #ddd;
     color: black;
 }
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .topnav a,.topnav-right {
+        float: none;
+        width:100%;
+    }
+    .topnav{
+        top:0;
+        position:static;
+    }
+
+}
+
+/*===========================================header================================*/
 #header{
   margin-top:45px;
 }
@@ -64,7 +76,7 @@ img{
   vertical-align:left;
 }
 .slideshow-container{
-  max-width: 1400px;
+  max-width: 5000px;
   position:relative;
   margin:auto;
 }
@@ -162,26 +174,33 @@ The opacity-level describes the transparency-level, where 1 is not transparent a
   .prev, .next,.text {font-size: 11px}
 }
 
-
+/*===========================================================MAIN========================================*/
 #main{
+
+}
+/* Column container */
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
 }
 .leftColumn{
-  float:left;
-  width:25%;
+  -ms-flex: 25%; /* IE10 */
+   flex: 25%;
 }
 .rightColumn{
-  float:right;
-  width:75%;
-  padding-left:25px;
+  -ms-flex: 75%; /* IE10 */
+      flex: 75%;
 }
 /* Responsive layout - when the screen is less than 800px wide,
 make the two columns stack on top of each other instead of next to each other
 */
-@media only screen and (max-width:800px){
-  .leftColum,.rightColumn{
-    width:100%;
-    padding 0;
-  }
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .row {
+        flex-direction: column;
+    }
 }
 .card{
   background-color: white;
@@ -294,14 +313,16 @@ make the two columns stack on top of each other instead of next to each other
     background-color: white;
     overflow: hidden;
 }
-
+/*=============================================footer=============================*/
 #footer{
+    width:100%;
     padding: 1em;
     color: white;
     background-color: black;
     clear: left;
     text-align: center;
 }
+
 footer a{
   color:white;
 }
