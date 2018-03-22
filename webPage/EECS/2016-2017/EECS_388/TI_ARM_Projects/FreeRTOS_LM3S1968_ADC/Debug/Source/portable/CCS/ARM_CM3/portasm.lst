@@ -1,0 +1,197 @@
+TI ARM Assembler PC v15.12.1 Wed Oct 25 14:25:23 2017
+
+Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
+../Source/portable/CCS/ARM_CM3/portasm.s                             PAGE    1
+
+       1                    ;;/*
+       2                    ;;    FreeRTOS V7.4.0 - Copyright (C) 2013 Real Time Engineers Ltd.
+       3                    ;;
+       4                    ;;    FEATURES AND PORTS ARE ADDED TO FREERTOS ALL THE TIME.  PLEASE VISIT
+       5                    ;;    http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+       6                    ;;
+       7                    ;;    ***************************************************************************
+       8                    ;;     *                                                                       *
+       9                    ;;     *    FreeRTOS tutorial books are available in pdf and paperback.        *
+      10                    ;;     *    Complete, revised, and edited pdf reference manuals are also       *
+      11                    ;;     *    available.                                                         *
+      12                    ;;     *                                                                       *
+      13                    ;;     *    Purchasing FreeRTOS documentation will not only help you, by       *
+      14                    ;;     *    ensuring you get running as quickly as possible and with an        *
+      15                    ;;     *    in-depth knowledge of how to use FreeRTOS, it will also help       *
+      16                    ;;     *    the FreeRTOS project to continue with its mission of providing     *
+      17                    ;;     *    professional grade, cross platform, de facto standard solutions    *
+      18                    ;;     *    for microcontrollers - completely free of charge!                  *
+      19                    ;;     *                                                                       *
+      20                    ;;     *    >>> See http://www.FreeRTOS.org/Documentation for details. <<<     *
+      21                    ;;     *                                                                       *
+      22                    ;;     *    Thank you for using FreeRTOS, and thank you for your support!      *
+      23                    ;;     *                                                                       *
+      24                    ;;    ***************************************************************************
+      25                    ;;
+      26                    ;;
+      27                    ;;    This file is part of the FreeRTOS distribution.
+      28                    ;;
+      29                    ;;    FreeRTOS is free software; you can redistribute it and/or modify it under
+      30                    ;;    the terms of the GNU General Public License (version 2) as published by the
+      31                    ;;    Free Software Foundation AND MODIFIED BY the FreeRTOS exception.
+      32                    ;;
+      33                    ;;    >>>>>>NOTE<<<<<< The modification to the GPL is included to allow you to
+      34                    ;;    distribute a combined work that includes FreeRTOS without being obliged to
+      35                    ;;    provide the source code for proprietary components outside of the FreeRTOS
+      36                    ;;    kernel.
+      37                    ;;
+      38                    ;;    FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+      39                    ;;    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+      40                    ;;    FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+      41                    ;;    details. You should have received a copy of the GNU General Public License
+      42                    ;;    and the FreeRTOS license exception along with FreeRTOS; if not itcan be
+      43                    ;;    viewed here: http://www.freertos.org/a00114.html and also obtained by
+      44                    ;;    writing to Real Time Engineers Ltd., contact details for whom are available
+      45                    ;;    on the FreeRTOS WEB site.
+      46                    ;;
+      47                    ;;    1 tab == 4 spaces!
+      48                    ;;
+      49                    ;;    ***************************************************************************
+      50                    ;;     *                                                                       *
+      51                    ;;     *    Having a problem?  Start by reading the FAQ "My application does   *
+      52                    ;;     *    not run, what could be wrong?"                                     *
+      53                    ;;     *                                                                       *
+      54                    ;;     *    http://www.FreeRTOS.org/FAQHelp.html                               *
+      55                    ;;     *                                                                       *
+TI ARM Assembler PC v15.12.1 Wed Oct 25 14:25:23 2017
+
+Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
+../Source/portable/CCS/ARM_CM3/portasm.s                             PAGE    2
+
+      56                    ;;    ***************************************************************************
+      57                    ;;
+      58                    ;;
+      59                    ;;    http://www.FreeRTOS.org - Documentation, books, training, latest versions, 
+      60                    ;;    license and Real Time Engineers Ltd. contact details.
+      61                    ;;
+      62                    ;;    http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+      63                    ;;    including FreeRTOS+Trace - an indispensable productivity tool, and our new
+      64                    ;;    fully thread aware and reentrant UDP/IP stack.
+      65                    ;;
+      66                    ;;    http://www.OpenRTOS.com - Real Time Engineers ltd license FreeRTOS to High 
+      67                    ;;    Integrity Systems, who sell the code with commercial support, 
+      68                    ;;    indemnification and middleware, under the OpenRTOS brand.
+      69                    ;;    
+      70                    ;;    http://www.SafeRTOS.com - High Integrity Systems also provide a safety 
+      71                    ;;    engineered and independently SIL3 certified version for use in safety and 
+      72                    ;;    mission critical applications that require provable dependability.
+      73                    ;;    
+      74                    ;;    ;
+      75                    ;;    ; Modified for IT Code Composer Studio assembly format.
+      76                    ;;*/
+      77                    ;;
+      78                            .cdecls         C,"FreeRTOSConfig.h"
+      79                    
+      80                    ;;      RSEG    CODE:CODE(2)
+      81 00000000                   .thumb
+      82                    
+      83                            .global         pxCurrentTCB
+      84                            .global         vTaskSwitchContext
+      85                    
+      86                            .global         xPortPendSVHandler
+      87                            .global         vPortSVCHandler
+      88                            .global         ulPortSetInterruptMask
+      89                            .global         vPortClearInterruptMask
+      90                            .global         vPortSVCHandler
+      91                            .global         vPortStartFirstTask
+      92                    
+      93                    
+      94                    
+      95                    ;;/*-----------------------------------------------------------*/
+      96                    
+      97 00000000           xPortPendSVHandler:
+      98 00000000 8009F3EF          mrs r0, psp                                              ; [KEEP 32-BIT INS]
+      99 00000004 4B0C              ldr     r3, pxCurrentTCBConst                   ;;/* Get the location of the current TCB. */ ;
+     100 00000006 681A              ldr     r2, [r3]                                                 ; [ORIG 16-BIT INS]
+     101                    
+     102 00000008 0FF0E920          stmdb r0!, {r4-r11}                             ;;/* Save the remaining registers. */ ; [KEEP 
+     103 0000000c 6010              str r0, [r2]                                    ;;/* Save the new top of stack into the first 
+     104                    
+     105 0000000e 4008E92D          stmdb sp!, {r3, r14} ; [KEEP 32-BIT INS]
+     106 00000012 00A0F04F          mov r0, #configMAX_SYSCALL_INTERRUPT_PRIORITY ; [KEEP 32-BIT INS]
+     107 00000016 8811F380          msr basepri, r0 ; [KEEP 32-BIT INS]
+     108 0000001a FFFEF7FF!         bl vTaskSwitchContext                    ; [KEEP 32-BIT INS]
+     109 0000001e 0000F04F          mov r0, #0 ; [KEEP 32-BIT INS]
+     110 00000022 8811F380          msr basepri, r0 ; [KEEP 32-BIT INS]
+TI ARM Assembler PC v15.12.1 Wed Oct 25 14:25:23 2017
+
+Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
+../Source/portable/CCS/ARM_CM3/portasm.s                             PAGE    3
+
+     111 00000026 4008E8BD          ldmia sp!, {r3, r14} ; [KEEP 32-BIT INS]
+     112                    
+     113 0000002a 6819              ldr r1, [r3]                                     ; [ORIG 16-BIT INS]
+     114 0000002c 6808              ldr r0, [r1]                                    ;;/* The first item in pxCurrentTCB is the tas
+     115 0000002e 0FF0E8B0          ldmia r0!, {r4-r11}                             ;;/* Pop the registers. */ ; [KEEP 32-BIT INS]
+     116 00000032 8809F380          msr psp, r0                                              ; [KEEP 32-BIT INS]
+     117 00000036 4770              bx r14           ; [ORIG 16-BIT INS]
+     118                            
+     119 00000038 00000000! pxCurrentTCBConst: .word pxCurrentTCB                                   
+     120                    
+     121                    
+     122                    ;;/*-----------------------------------------------------------*/
+     123                    
+     124 0000003c           ulPortSetInterruptMask:
+     125 0000003c 8011F3EF          mrs r0, basepri ; [KEEP 32-BIT INS]
+     126 00000040 01A0F04F          mov r1, #configMAX_SYSCALL_INTERRUPT_PRIORITY ; [KEEP 32-BIT INS]
+     127 00000044 8811F381          msr basepri, r1 ; [KEEP 32-BIT INS]
+     128 00000048 4770              bx r14 ; [ORIG 16-BIT INS]
+     129                            
+     130                    ;;/*-----------------------------------------------------------*/
+     131                    
+     132 0000004a           vPortClearInterruptMask:
+     133 0000004a 8811F380          msr basepri, r0 ; [KEEP 32-BIT INS]
+     134 0000004e 4770              bx r14 ; [ORIG 16-BIT INS]
+     135                    
+     136                    ;;/*-----------------------------------------------------------*/
+     137                    
+     138 00000050           vPortSVCHandler:
+     139                            ;;/* Get the location of the current TCB. */
+     140 00000050 301CF85F          ldr     r3, pxCurrentTCBConst ; [KEEP 32-BIT INS]
+     141 00000054 6819              ldr r1, [r3] ; [ORIG 16-BIT INS]
+     142 00000056 6808              ldr r0, [r1] ; [ORIG 16-BIT INS]
+     143                            ;;/* Pop the core registers. */
+     144 00000058 0FF0E8B0          ldmia r0!, {r4-r11} ; [KEEP 32-BIT INS]
+     145 0000005c 8809F380          msr psp, r0 ; [KEEP 32-BIT INS]
+     146 00000060 0000F04F          mov r0, #0 ; [KEEP 32-BIT INS]
+     147 00000064 8811F380          msr     basepri, r0 ; [KEEP 32-BIT INS]
+     148 00000068 0E0DF04E          orr r14, r14, #13 ; [KEEP 32-BIT INS]
+     149 0000006c 4770              bx r14 ; [ORIG 16-BIT INS]
+     150                            
+     151                    
+     152                    ;;/*-----------------------------------------------------------*/
+     153                    
+     154 0000006e           vPortStartFirstTask:
+     155                            ;;/* Use the NVIC offset register to locate the stack. */
+     156 0000006e 4803              ldr r0, NVICRegAddr ; [ORIG 16-BIT INS]
+     157 00000070 6800              ldr r0, [r0] ; [ORIG 16-BIT INS]
+     158 00000072 6800              ldr r0, [r0] ; [ORIG 16-BIT INS]
+     159                            ;;/* Set the msp back to the start of the stack. */
+     160 00000074 8808F380          msr msp, r0 ; [KEEP 32-BIT INS]
+     161                            ;;/* Call SVC to start the first task. */
+     162 00000078 B662              cpsie i ; [ORIG 16-BIT INS]
+     163 0000007a DF00              svc #0 ; [ORIG 16-BIT INS]
+     164                    
+     165 0000007c E000ED08  NVICRegAddr: .word 0xE000ED08
+TI ARM Assembler PC v15.12.1 Wed Oct 25 14:25:23 2017
+
+Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
+../Source/portable/CCS/ARM_CM3/portasm.s                             PAGE    4
+
+     166                            .end
+
+--------------------------
+Thumb2 Statistics
+--------------------------
+Number of Thumb2 ins converted to Thumb = 0 (0%)
+Number of Thumb ins in input = 19 (46%)
+Number of Thumb2 ins encoded as Thumb2 = 22 (100%)
+Number of Thumb2 ins converted to 2 OPND Thumb = 0
+
+
+No Assembly Errors, No Assembly Warnings

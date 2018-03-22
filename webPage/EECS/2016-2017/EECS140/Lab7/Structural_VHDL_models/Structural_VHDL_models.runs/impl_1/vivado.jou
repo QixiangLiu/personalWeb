@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Thu Oct 13 10:51:13 2016
+# Process ID: 7052
+# Current directory: H:/EECS140_Lab/Lab7/Structural_VHDL_models/Structural_VHDL_models.runs/impl_1
+# Command line: vivado.exe -log my_xor6_gate.vdi -applog -messageDb vivado.pb -mode batch -source my_xor6_gate.tcl -notrace
+# Log file: H:/EECS140_Lab/Lab7/Structural_VHDL_models/Structural_VHDL_models.runs/impl_1/my_xor6_gate.vdi
+# Journal file: H:/EECS140_Lab/Lab7/Structural_VHDL_models/Structural_VHDL_models.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source my_xor6_gate.tcl -notrace

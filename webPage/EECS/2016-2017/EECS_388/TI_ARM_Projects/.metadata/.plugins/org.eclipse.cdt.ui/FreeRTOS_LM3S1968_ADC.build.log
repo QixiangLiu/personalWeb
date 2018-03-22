@@ -1,0 +1,29 @@
+
+**** Build of configuration Debug for project FreeRTOS_LM3S1968_ADC ****
+
+"C:\\TI_CodeComposer\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../Tasks/Task_ReportSysTick.c'
+'Invoking: ARM Compiler'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 -me --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS_LM3S1968_ADC" --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS_LM3S1968_ADC/Source/portable/CCS/ARM_CM3" --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS_LM3S1968_ADC/Source/include" --include_path="C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" --include_path="C:/TI_CodeComposer/StellarisWare-LM3S1968" -g --gcc --define="ccs" --define=PART_LM3S1968 --define=ARM_CM3 --super_quiet --diag_wrap=off --diag_warning=225 --display_error_number --abi=eabi --printf_support=full -k --asm_listing --preproc_with_compile --preproc_dependency="Tasks/Task_ReportSysTick.d" --obj_directory="Tasks"  "../Tasks/Task_ReportSysTick.c"
+'Finished building: ../Tasks/Task_ReportSysTick.c'
+' '
+'Building target: FreeRTOS_LM3S1968_ADC.out'
+'Invoking: ARM Linker'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 -me -g --gcc --define="ccs" --define=PART_LM3S1968 --define=ARM_CM3 --super_quiet --diag_wrap=off --diag_warning=225 --display_error_number --abi=eabi --printf_support=full -k --asm_listing -z -m"FreeRTOS_LM3S1968_ADC.map" --stack_size=0x0800 --heap_size=0x0800 -i"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/lib" -i"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="FreeRTOS_LM3S1968_ADC_linkInfo.xml" --rom_model -o "FreeRTOS_LM3S1968_ADC.out" "./FreeRTOS_LM3S_Startup.obj" "./Main_ADC.obj" "./heap_2.obj" "./Drivers/UARTStdio_Initialization_LM3S1968.obj" "./Drivers/rit128x96x4.obj" "./Drivers/uartstdio.obj" "./Source/croutine.obj" "./Source/event_groups.obj" "./Source/list.obj" "./Source/queue.obj" "./Source/tasks.obj" "./Source/timers.obj" "./Source/portable/CCS/ARM_CM3/port.obj" "./Source/portable/CCS/ARM_CM3/portasm.obj" "./Tasks/Task_ADC.obj" "./Tasks/Task_Blinky.obj" "./Tasks/Task_ReportSysTick.obj" "../lm3s1968.cmd"  -l"C:/TI_CodeComposer/StellarisWare-LM3S1968/driverlib/ccs-cm3/Debug/driverlib-cm3.lib" -llibc.a 
+'Finished building target: FreeRTOS_LM3S1968_ADC.out'
+' '
+'Invoking: ARM Hex Utility'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armhex"  -o "FreeRTOS_LM3S1968_ADC.hex"  "FreeRTOS_LM3S1968_ADC.out" 
+Translating to Extended Tektronix format...
+   "FreeRTOS_LM3S1968_ADC.out" .intvecs ==> .intvecs
+   "FreeRTOS_LM3S1968_ADC.out" .text ==> .text
+   "FreeRTOS_LM3S1968_ADC.out" .const ==> .const
+   "FreeRTOS_LM3S1968_ADC.out" .cinit ==> .cinit
+warning: section FreeRTOS_LM3S1968_ADC.out(.text) was padded by 2 to a size of
+   21020 to satisfy the specified memory width of 4
+warning: section FreeRTOS_LM3S1968_ADC.out(.const) was padded by 2 to a size of
+   1052 to satisfy the specified memory width of 4
+'Finished building: FreeRTOS_LM3S1968_ADC.hex'
+' '
+
+**** Build Finished ****

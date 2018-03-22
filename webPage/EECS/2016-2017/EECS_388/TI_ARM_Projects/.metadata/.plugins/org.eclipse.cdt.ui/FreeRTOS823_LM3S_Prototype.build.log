@@ -1,0 +1,27 @@
+
+**** Build of configuration Debug for project FreeRTOS823_LM3S_Prototype ****
+
+"C:\\TI_CodeComposer\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../Tasks/Task_ReportSysTick.c'
+'Invoking: ARM Compiler'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 -me --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS823_LM3S_Prototype" --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS823_LM3S_Prototype/Source/portable/CCS/ARM_CM3" --include_path="H:/EECS_388/TI_ARM_Projects/FreeRTOS823_LM3S_Prototype/Source/include" --include_path="C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" --include_path="C:/TI_CodeComposer/StellarisWare-LM3S1968" -g --gcc --define="ccs" --define=PART_LM3S1968 --define=ARM_CM3 --super_quiet --diag_wrap=off --diag_warning=225 --display_error_number --abi=eabi --printf_support=full -k --asm_listing --preproc_with_compile --preproc_dependency="Tasks/Task_ReportSysTick.d" --obj_directory="Tasks"  "../Tasks/Task_ReportSysTick.c"
+'Finished building: ../Tasks/Task_ReportSysTick.c'
+' '
+'Building target: FreeRTOS823_LM3S_Prototype.out'
+'Invoking: ARM Linker'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 -me -g --gcc --define="ccs" --define=PART_LM3S1968 --define=ARM_CM3 --super_quiet --diag_wrap=off --diag_warning=225 --display_error_number --abi=eabi --printf_support=full -k --asm_listing -z -m"FreeRTOS823_LM3S_Prototype.map" --stack_size=0x0800 --heap_size=0x0800 -i"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/lib" -i"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="FreeRTOS823_LM3S_Prototype_linkInfo.xml" --rom_model -o "FreeRTOS823_LM3S_Prototype.out" "./FreeRTOS_LM3S_Startup.obj" "./Main_ReportSysTick.obj" "./heap_2.obj" "./Drivers/UARTStdio_Initialization_LM3S1968.obj" "./Drivers/rit128x96x4.obj" "./Drivers/uartstdio.obj" "./Source/croutine.obj" "./Source/event_groups.obj" "./Source/list.obj" "./Source/queue.obj" "./Source/tasks.obj" "./Source/timers.obj" "./Source/portable/CCS/ARM_CM3/port.obj" "./Source/portable/CCS/ARM_CM3/portasm.obj" "./Tasks/Task_Blinky.obj" "./Tasks/Task_ReportSysTick.obj" "../lm3s1968.cmd"  -l"C:/TI_CodeComposer/StellarisWare-LM3S1968/driverlib/ccs-cm3/Debug/driverlib-cm3.lib" -llibc.a 
+'Finished building target: FreeRTOS823_LM3S_Prototype.out'
+' '
+'Invoking: ARM Hex Utility'
+"C:/TI_CodeComposer/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armhex"  -o "FreeRTOS823_LM3S_Prototype.hex"  "FreeRTOS823_LM3S_Prototype.out" 
+Translating to Extended Tektronix format...
+   "FreeRTOS823_LM3S_Prototype.out" .intvecs ==> .intvecs
+   "FreeRTOS823_LM3S_Prototype.out" .text ==> .text
+   "FreeRTOS823_LM3S_Prototype.out" .const ==> .const
+   "FreeRTOS823_LM3S_Prototype.out" .cinit ==> .cinit
+warning: section FreeRTOS823_LM3S_Prototype.out(.const) was padded by 2 to a
+   size of 1052 to satisfy the specified memory width of 4
+'Finished building: FreeRTOS823_LM3S_Prototype.hex'
+' '
+
+**** Build Finished ****

@@ -1,0 +1,7 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "H:/EECS140_Lab/Lab8/LEDdisplay.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity Mux4by7
+INFO: [VRFC 10-307] analyzing entity LEDdisplay
+INFO: [VRFC 10-163] Analyzing VHDL file "H:/EECS140_Lab/Lab8/Display_driver.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity display_driver
+INFO: [VRFC 10-163] Analyzing VHDL file "H:/EECS140_Lab/Lab8/Toplevel.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity toplevel

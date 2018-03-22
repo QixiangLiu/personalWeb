@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  "../../../../LEDdisplay.vhd"
+vhdl xil_defaultlib  "../../../../Display_driver.vhd"
+vhdl xil_defaultlib  "../../../../Toplevel.vhd"
+
+# Do not sort compile order
+nosort

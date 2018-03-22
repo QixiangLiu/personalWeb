@@ -1,0 +1,7 @@
+set_property SRC_FILE_INFO {cfile:H:/EECS140_Lab/lab11/lab11/lab11.srcs/constrs_1/new/Latch_gate.xdc rfile:../../../lab11.srcs/constrs_1/new/Latch_gate.xdc id:1} [current_design]
+set_property src_info {type:XDC file:1 line:10 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN V17 [get_ports {D}]
+set_property src_info {type:XDC file:1 line:13 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U18 [get_ports Clk]
+set_property src_info {type:XDC file:1 line:17 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN U16 [get_ports {Q}]

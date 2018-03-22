@@ -1,0 +1,26 @@
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2016.2/bin/unwrapped/win64.o/xelab.exe -wto 5677dcf3dc334032aadca860990b004a --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot toplevel_behav xil_defaultlib.toplevel -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package unisim.vcomponents
+Compiling package std.textio
+Compiling package ieee.vital_timing
+Compiling package ieee.vital_primitives
+Compiling package unisim.vpkg
+Compiling architecture behavioral of entity xil_defaultlib.display_driver [display_driver_default]
+Compiling architecture lut3_v of entity unisim.LUT3 [\LUT3(init="11001010")(0,7)\]
+Compiling architecture muxf5_v of entity unisim.MUXF5 [muxf5_default]
+Compiling architecture muxf6_v of entity unisim.MUXF6 [muxf6_default]
+Compiling architecture procedural of entity xil_defaultlib.Mux4by7 [mux4by7_default]
+Compiling architecture structural of entity xil_defaultlib.LEDdisplay [leddisplay_default]
+Compiling architecture behavioral of entity xil_defaultlib.toplevel
+Built simulation snapshot toplevel_behav

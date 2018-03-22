@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:40 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Thu Dec 01 09:58:45 2016
+# Process ID: 1260
+# Current directory: H:/EECS140_Lab/lab12/lab_last/lab_last.runs/impl_1
+# Command line: vivado.exe -log liu_encoder.vdi -applog -messageDb vivado.pb -mode batch -source liu_encoder.tcl -notrace
+# Log file: H:/EECS140_Lab/lab12/lab_last/lab_last.runs/impl_1/liu_encoder.vdi
+# Journal file: H:/EECS140_Lab/lab12/lab_last/lab_last.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source liu_encoder.tcl -notrace

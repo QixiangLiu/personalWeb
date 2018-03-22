@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1472830324">
+  <File Type="RDS-PROPCONSTRS" Name="Liu_lab1_drc_synth.rpt"/>
+  <File Type="PA-TCL" Name="Liu_lab1.tcl"/>
+  <File Type="RDS-RDS" Name="Liu_lab1.vds"/>
+  <File Type="RDS-UTIL" Name="Liu_lab1_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Liu_lab1_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Liu_lab1.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Liu_lab1_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Liu_lab1_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/Liu_lab1.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="Liu_lab1"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/and_gate.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Flow_RuntimeOptimized" Flow="Vivado Synthesis 2016">
+      <Desc>Trades off Performance and Area for better Runtime.</Desc>
+    </StratHandle>
+    <Step Id="synth_design">
+      <Option Id="FlattenHierarchy">1</Option>
+      <Option Id="Directive">0</Option>
+      <Option Id="FsmExtraction">0</Option>
+    </Step>
+  </Strategy>
+</GenRun>

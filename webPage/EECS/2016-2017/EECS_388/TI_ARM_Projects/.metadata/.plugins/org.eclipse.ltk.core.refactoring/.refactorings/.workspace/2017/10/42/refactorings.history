@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;FreeRTOS823_LM3S_Prototype/Tasks/Task_ReportSysTick.c&apos;" deleteContents="false" description="Delete resource &apos;FreeRTOS823_LM3S_Prototype/Tasks/Task_ReportSysTick.c&apos;" element1="/FreeRTOS823_LM3S_Prototype/Tasks/Task_ReportSysTick.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1508354192776"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;FreeRTOS823_LM3S_Prototype/Main_Blinky.c&apos; to &apos;Main_ReportSysTick.c&apos;" description="Rename resource &apos;Main_Blinky.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Main_Blinky.c" name="Main_ReportSysTick.c" stamp="1508354807824" updateReferences="true"/>
+</session>
