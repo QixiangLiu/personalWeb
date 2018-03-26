@@ -43,6 +43,7 @@ body{
   color: white;
 }
 
+
 .topnav-right {
   float: right;
 }
@@ -209,6 +210,15 @@ make the two columns stack on top of each other instead of next to each other
   padding:20px;
   margin-top:20px;
 }
+.card a{
+  text-decoration:none;
+  color:blue;
+}
+.card a:hover{
+  text-decoration: underline;
+  color:red;
+}
+
 /**
  * 设置日历的大小
  */

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Qixiang Liu">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <!-- <meta http-equiv="refresh" content="30"> -->
+  <title>Survey</title>
+  <link rel="stylesheet" type="text/css" href="../css/survey.css">
+</head>
+<body>
+  <div id="topnav">
+    <a href="../../index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="#">Top</a>
+  </div>
+  <script>
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("topnav").style.top = "0";
+      } else {
+        document.getElementById("topnav").style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
+      }
+  </script>
+  <header style="margin-top:50px;">
+    <p>
+      <strong>
+        Writing in front:<br>
+        1.Each survey is anonymous. If you want to give me contact information, I am so happy.<br>
+        2.I promise surveys do not damage users' benefits. I am willing to protect private
+        information.<br>
+        3.If surveys includes bad influences, such as race discrimination or cheating,
+        please contact me. I am willing to make compensations or apologizes to users.<br>
+        4.If you are interested in the survey, please spend a few minutes. If you are not
+        interested in all surveys, please go away.<br>
+        5.If you check errors, please contact me. my KU Email: q709l816@ku.edu
+    </strong>
+    </p>
+  </header>
+
+  <div class="survey">
+    <div class="tab">
+      <p style="text-align:center;">Game Survey</p>
+      <button class="tablinks" onclick="openCity(event, 'Basic')" id="defaultOpen">Basic Survey</button>
+      <button class="tablinks" onclick="openCity(event, 'Yu-Gi-Oh!')" >Yu-Gi-Oh!(游戏王)</button>
+      <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+      <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+    </div>
+    <div class= "container">
+        <div id="Basic" class="tabcontent">
+          <center>
+          <h3>Basic</h3>
+          <hr>
+        </center>
+          <form action="../php/gamesBasic.php" method="post">
+            Name: <input type="text" name="name"><br>
+            <p>Question 1: Do you like playing video games?<p>
+            <input type = "radio" checked = "checked" name ="Q1" value = "Yes"> a) Yes<br>
+            <input type = "radio" name ="Q1" value = "No"> b) No<br>
+            <p>Question 2: Do you know Holographic projection?(全息投影)<p>
+            <input type = "radio" checked = "checked" name ="Q2" value = "Yes"> a) Yes<br>
+            <input type = "radio" name ="Q2" value = "No"> b) No<br>
+            <p>Question 3: Do you know Augmented Reality?（俗称AR，增强现实）<p>
+            <input type = "radio" checked = "checked" name ="Q3" value = "Yes"> a) Yes<br>
+            <input type = "radio" name ="Q3" value = "No"> b) No<br>
+            <p>Question 4: Do you know card games, such as Yu-Gi-Oh!, Hearthstone? (游戏王或炉石传说)<p>
+            <input type = "radio" checked = "checked" name ="Q4" value = "Yes"> a) Yes<br>
+            <input type = "radio" name ="Q4" value = "No"> b) No<br>
+            <!-- <p>Question 5: What is Jaobao's favorite hobby?<p>
+            <input type = "radio" checked = "checked" name ="Q5" value = "Sleep"> a) Sleep<br>
+            <input type = "radio" name ="Q5" value = "Basketball"> b) Baskeball<br>
+            <input type = "radio" name ="Q5" value = "Goal"> c) Goal<br>
+            <input type = "radio" name ="Q5" value = "Eat"> d) Eat<br> -->
+            <br>
+            <input type ="submit" value = "Submit">
+          </form>
+        </div>
+        <div id="Yu-Gi-Oh!" class="tabcontent">
+          <h3>Yu-Gi-Oh!</h3>
+          <p></p>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+          <h3>Paris</h3>
+          <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+          <h3>Tokyo</h3>
+          <p>Tokyo is the capital of Japan.</p>
+        </div>
+    </div>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+  </div>
+  <div class="container" id="contact">
+    <h3>Contact Form</h3>
+    <form action="/action_page.php" method="post">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+        <label for="title">Title</label>
+        <select id="title" name="title">
+          <option value="Question">Question</option>
+          <option value="Advice">Advice</option>
+          <option value="error">Error</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.."
+        style="height:200px"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+  </div>
+
+
+
+
+  <footer></footer>
+
+</body>
+</html>
