@@ -1,6 +1,8 @@
 a{
-  color:black;
+  color:blue;
+  text-decoration: none;
 }
 a:hover{
   background-color:#ddd;
+
 }
