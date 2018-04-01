@@ -7,8 +7,56 @@
   <meta name ="author" content="QixiangLiu">
 </head>
 
-<body>
+<body style="padding:20px;">
+  <h2>Eloquent JavaScript</h2>
+  <p>
+    JS Do:<br>
+    1) Improve user interations <br>
+    2) Check form, table in order to save time<br>
+    3) Create dynamic website, eg. attach a document to the email<br>
+    4) Set up Cookie (Cookie is some temporary infomation that store in website)<br>
+    eg. browser history, username.<br>
+    JS Cannot:<br>
+    1) Cannot be allowed to read or write computer's files.<br>
+    2) Cannot be allowed to modify server's files.<br>
+    3) Cannot close windows that do not belong JS.<br>
+    4) Donot read other websites. (JS donot know what you visit in websits);<br>
+    JS is hard to learn because JS is a lot of small knowledge.<br>
+  </p>
+  <h3>Chapter 3 and 5: Function and High Order Function</h3>
+  <p>
+    Definition of Functions(3 ways):<br>
+    1) Cannot be hoisted: const square = function(x){return x*x;}; <strong>if have no return, return undefined;</strong><br>
+    2) <b>Declaration (hoisted):</b> function square(x){return x*x;}<br>
+    3) Arrow function: const square1 = (x) => {return x*x;}; == const square2 = x=>x*x;<br>
+    (single parameter and expression.)<br>
+    Call Stack: Draw a table or flows; If call function is infinite, there is a error;
+    Error: RangeError: Maximum call stack size exceeded.<br>
+    Closure: being able to reference a specific instance of a local binding in an enclosing scope
+    In other words, close over some local bindings<br>
+    High-Order Function: more abstraction but decrease bugs;<br>
+    Functions that operate on other functions, either by taking them as arguments or by returning them.<br>
+
+    function repeat(n, action) {<br>
+      &nbsp;&nbsp;for (let i = 0; i < n; i++) {<br>
+      &nbsp;&nbsp;  action(i);<br>
+      &nbsp;&nbsp;}<br>
+    }<br>
+    repeat(3, console.log);<br>
+      <h4>Abstract over actions,not just values</h4>
+      1) Create new function <br>
+      2) 对内部for-loop参数i 执行一个新的函数; Have functions that change other functions<br>
+      4) write functions that provide new types of control flow.<br>
+  </p>
   <h3>Chpater 6 Objects</h3>
+  <a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html">阮一峰中文素材</a>
+  <p>
+    Encapsulation(封装性):Separating interface from implementation is a great idea. <br>
+    Prototype(原型):A prototype is another object that is used as a fallback source of properties. <br>
+    Obeject.create(); The function create a specifice prototype.<br>
+    Class: 类是对象的模版，定义同一组对象（“实例”）共有的属性和方法；JavaScript一开始没有class，但是可以模拟一个类<br>
+    Constructor: 构造函数 this 指代实例对象；new: 生成实例；类的属性和方法可以定义在prototype之上；<br>
+  </p>
   <h3>Chapter 10 Modules</h3>
   <p>
     Modules: 指实现某特定功能的一组方法和代码. eg: CommonJS，C “include”<br>
@@ -18,41 +66,21 @@
     <a href="http://www.ruanyifeng.com/blog/javascript/">阮一峰老师的JavaScript</a><br>
     Important!<a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html">Modules（1）</a><br>
     <a href="http://web.jobbole.com/83761/">模块化进程</a>
-    基本模版：<br>
-      ;(function (参数) { <br>
-      // 模块代码 <br>
-      // return something;<br>
-      })(参数);<br>
-    eg><br>
+    <b>Dependencies：..waiting</b>
+    基本模版：匿名闭包函数，能访问到全局变量，也叫立即执行函数，最外面需要括号包住。<br>
+    参数是另一种全局变量的传入<br>
+    (function (参数) { <br>
+      &nbsp;&nbsp; // 模块代码 <br>
+      &nbsp;&nbsp; // return something;<br>
+    })(参数);）<br>
+    第二种定义：对象接口<br>
       const weekDay = function() { <br>
-        const names = ["Sunday", "Monday", "Tuesday", "Wednesday",
-                       "Thursday", "Friday", "Saturday"];//变量不可见<br>
-          return {//接口给外面使用<br>
-              name(number) { return names[number]; }, <br>
-              number(name) { return names.indexOf(name); } <br>
-          };<br>
+        &nbsp;&nbsp; ../do something <br>
       }();<br>
-    console.log(weekDay.name(weekDay.number("Sunday")));<br>
+    <h4>扩充 增加新的方法进去: ....waiting</h4>
     require（导入） to access their dependencies, and put their interface in the object
     bound to exports（导出）.<br>
-    node.js规范了CommonJS
-    1. 模块的标识应遵循的规则（书写规范）<br>
-    2. 定义全局函数require，通过传入模块标识来引入其他模块，执行的结果即为别的模块暴漏出来的API<br>
-    3. 如果被require函数引入的模块中也包含依赖，那么依次加载这些依赖<br>
-    4. 如果引入模块失败，那么require函数应该报一个异常<br>
-    5. 模块通过变量exports来向往暴漏API，exports只能是一个对象，暴漏的API须作为此对象的属性。<br>
-
-  </p>
-  <h3>Chapter 13 Asynchronous Programming</h3>
-  <p>
-    <h4>import {} from </h4>
-    <a href="http://es6.ruanyifeng.com/#docs/module#export">阮一峰老师ECMAScript 6</a>
-    export用于对外输出本模块（一个文件可以理解为一个模块）变量的接口 <br>
-    import用于在一个模块中加载另一个含有export接口的模块。<br>
-    也就是说使用export命令定义了模块的对外接口以后，其他JS文件就可以通过import命令加载这个模块（文件）。<br>
-  </p>
-  <p>
-    <h4>JavaScript require()</h4>
+    <b>JavaScript require()加载模块对象</b><br>
           每个模块实例都有一个require 方法<br>
           用来搜索文件或者文件夹的,调用模块<br>
           当 Node 遇到 require(X) 时，按下面的顺序处理。<br>
@@ -62,15 +90,61 @@
       （2）如果 X 以 "./" 或者 "/" 或者 "../" 开头 <br>
       　　a. 根据 X 所在的父模块，确定 X 的绝对路径。 <br>
       　　b. 将 X 当成文件，依次查找下面文件，只要其中有一个存在，就返回该文件，不再继续执行。<br>
+      eg.const ordinal = require("ordinal"); //only single function;如果加载时间过长，后面
+          程序无法进行，需要采取A异步加载，参见Chapter11<br>
+          const {days, months} = require("date-names"); //an object containing multiple--—
+          the two values we use are arrays of names. <br>
+          <br>
+          exports.formatDate = function(date, format) { //出口<br>
+                  &nbsp;&nbsp; ../do something<br>
+            &nbsp;});<br>
+            };<br>
+          const {formatDate} = require("./format-date");//接受出口<br>
+      eg. change require to import(ES6 模块不是对象) <br>
+      &nbsp;&nbsp; import ordinal from "ordinal"; <br>
+      &nbsp;&nbsp; import {days, months} from "date-names";<br>
+      &nbsp;&nbsp; export function formatDate(date, format) { /* ... */ }<br>
+      export用于对外输出本模块（一个文件可以理解为一个模块）变量的接口
+      import用于在一个模块中加载另一个含有export接口的模块。
+      eg. Import <br>
+      import {firstName, lastName, year} from './profile';<br>
+      function setName(element) {<br>
+      &nbsp;&nbsp;  element.textContent = firstName + ' ' + lastName;<br>
+      }<br>
+      eg. Export <br>
+      // export-default.js 之前的例子中，使用import导入时，都需要知道模块中所要加载的变量名或函数名，
+      用户可能不想阅读源码，只想直接使用接口，就可以用export default命令，为模块指定输出<br>
+      export default function () {<br>
+        &nbsp; &nbsp; console.log('foo');<br>
+      }<br>
+      <h4>import {} from </h4>
+      <a href="http://es6.ruanyifeng.com/#docs/module#export">阮一峰老师ECMAScript 6</a>
+      export用于对外输出本模块（一个文件可以理解为一个模块）变量的接口 <br>
+      import用于在一个模块中加载另一个含有export接口的模块。<br>
+      也就是说使用export命令定义了模块的对外接口以后，其他JS文件就可以通过import命令加载这个模块（文件）。<br>
+    node.js规范了CommonJS
+    1. 模块的标识应遵循的规则（书写规范）<br>
+    2. 定义全局函数require，通过传入模块标识来引入其他模块，执行的结果即为别的模块暴漏出来的API<br>
+    3. 如果被require函数引入的模块中也包含依赖，那么依次加载这些依赖<br>
+    4. 如果引入模块失败，那么require函数应该报一个异常<br>
+    5. 模块通过变量exports来向往暴漏API，exports只能是一个对象，暴漏的API须作为此对象的属性。<br>
   </p>
+  <h3>Chapter 11 Asynchronous Programming</h3>
   <p>
-    <h4>Callback</h4>
+    <h4>Callback(high-order)</h4>
+      eg:
       setTimeout()方法只运行一次，也就是说当达到设定的时间后就出发运行指定的代码，运行完后就结束了，
       如果还想再次执行同样的函数，可以在函数体内再次调用setTimeout()，可以达到循环调用的效果。
       setInterval()是循环执行的，即每达到指定的时间间隔就执行相应的函数或者表达式，是真正的定时器。
     <h4>Promise</h4>
     <a href="https://www.cnblogs.com/nullcc/p/5841182.html">Link to Asyn Pro</a><br>
-    为CommonJS 提供统一的接口
+    为CommonJS 提供统一的接口<br>
+    Defintion:A promise is an asynchronous action that may complete at some point and
+     produce a value.<br>
+    Create a promise: 1) Promise.resolve(); 2) Constructor: new Promise(function(
+    resolve, reject) {});<br>
+    Method then(): get result
+
   </p>
   <p>
     <h4>Generator 函数</h4>
