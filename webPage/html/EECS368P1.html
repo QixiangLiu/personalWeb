@@ -8,7 +8,7 @@
 </head>
 
 <body style="padding:20px;">
-  <h2>Eloquent JavaScript</h2>
+  <h2 id="C3C5">Eloquent JavaScript language->web development</h2>
   <p>
     JS Do:<br>
     1) Improve user interations <br>
@@ -48,7 +48,7 @@
       2) 对内部for-loop参数i 执行一个新的函数; Have functions that change other functions<br>
       4) write functions that provide new types of control flow.<br>
   </p>
-  <h3>Chpater 6 Objects</h3>
+  <h3 id="C6">Chpater 6 Objects</h3>
   <a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html">阮一峰中文素材</a>
   <p>
     Encapsulation(封装性):Separating interface from implementation is a great idea. <br>
@@ -57,7 +57,7 @@
     Class: 类是对象的模版，定义同一组对象（“实例”）共有的属性和方法；JavaScript一开始没有class，但是可以模拟一个类<br>
     Constructor: 构造函数 this 指代实例对象；new: 生成实例；类的属性和方法可以定义在prototype之上；<br>
   </p>
-  <h3>Chapter 10 Modules</h3>
+  <h3 id="C10">Chapter 10 Modules</h3>
   <p>
     Modules: 指实现某特定功能的一组方法和代码. eg: CommonJS，C “include”<br>
     模块模式使用了 JavaScript 的一个特性，即闭包（Closures) <br>
@@ -129,8 +129,13 @@
     4. 如果引入模块失败，那么require函数应该报一个异常<br>
     5. 模块通过变量exports来向往暴漏API，exports只能是一个对象，暴漏的API须作为此对象的属性。<br>
   </p>
-  <h3>Chapter 11 Asynchronous Programming</h3>
+  <h3 id="C11">Chapter 11 Asynchronous Programming</h3>
   <p>
+    所谓"单线程"(Synchronous)，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务
+    完成，再执行后面一个任务，以此类推。<br>
+    异步的(Asynchronous): 每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行
+    后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排
+    列顺序是不一致的、异步的。
     <h4>Callback(high-order)</h4>
       eg:
       setTimeout()方法只运行一次，也就是说当达到设定的时间后就出发运行指定的代码，运行完后就结束了，
@@ -139,12 +144,94 @@
     <h4>Promise</h4>
     <a href="https://www.cnblogs.com/nullcc/p/5841182.html">Link to Asyn Pro</a><br>
     为CommonJS 提供统一的接口<br>
+    <ul>
+      <li>异步，表示在将来某一时刻执行，那么Promise也必须可以表示一个将来值；</li>
+      <li>异步任务，可能成功也可能失败，则Promise需要能完成事件，标记其状态值（这个过程即决议-resolve，下文将详细介绍）；</li>
+      <li>可能存在多重异步任务，即异步任务回调中有异步任务，所以Promise还需要支持可重复使用，添加异步任务（表现为顺序链式
+        调用，注册异步任务，这些异步任务将按注册的顺序执行）。</li>
+    </ul>
     Defintion:A promise is an asynchronous action that may complete at some point and
      produce a value.<br>
     Create a promise: 1) Promise.resolve(); 2) Constructor: new Promise(function(
     resolve, reject) {});<br>
-    Method then(): get result
+    Method then(): get result;指定回调函数 (resolve,reject),then()方法可以有return;<br>
+    There’s a Promise.reject function that creates a new, immediately-rejected promise.<br>
+    eg. <br>
+    <pre>
+    <b>Important!</b><a href="https://juejin.im/post/597724c26fb9a06bb75260e8">Link to转载</a>
+    1.Promise的立即执行性
 
+    var p = new Promise(function(resolve, reject){
+    console.log("create a promise");
+    resolve("success");
+    });
+
+    console.log("after new Promise");
+
+    p.then(function(value){
+    console.log(value);
+    });
+    控制台输出：
+    "create a promise"
+    "after new Promise"
+    "success"
+    Promise对象表示未来某个将要发生的事件，但在创建（new）Promise时，作为Promise参数传入的函数是会被立即执行的，
+    只是其中执行的代码可以是异步代码。有些同学会认为，当Promise对象调用then方法时，Promise接收的函数才会执行，
+    这是错误的。因此，代码中"create a promise"先于"after new Promise"输出。
+    2.Promise 三种状态
+
+    var p1 = new Promise(function(resolve,reject){
+      resolve(1);
+    });
+    var p2 = new Promise(function(resolve,reject){
+      setTimeout(function(){
+        resolve(2);
+      }, 500);
+    });
+    var p3 = new Promise(function(resolve,reject){
+      setTimeout(function(){
+        reject(3);
+      }, 500);
+    });
+
+    console.log(p1);
+    console.log(p2);
+    console.log(p3);
+    setTimeout(function(){
+      console.log(p2);
+    }, 1000);
+    setTimeout(function(){
+      console.log(p3);
+    }, 1000);
+
+    p1.then(function(value){
+      console.log(value);
+    });
+    p2.then(function(value){
+      console.log(value);
+    });
+    p3.catch(function(err){
+      console.log(err);
+    });
+    控制台输出：
+
+    Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: 1}
+    Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
+    Promise {[[PromiseStatus]]: "pending", [[PromiseValue]]: undefined}
+    1
+    2
+    3
+    Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: 2}
+    Promise {[[PromiseStatus]]: "rejected", [[PromiseValue]]: 3}
+    Promise的内部实现是一个状态机。Promise有三种状态：pending，resolved，rejected。当Promise刚创建完成时，
+    处于pending状态；当Promise中的函数参数执行了resolve后，Promise由pending状态变成resolved状态；如果在
+    Promise的函数参数中执行的不是resolve方法，而是reject方法，那么Promise会由pending状态变成rejected状态。
+
+    p2、p3刚创建完成时，控制台输出的这两台Promise都处于pending状态，但为什么p1是resolved状态呢？ 这是因为p1
+    的函数参数中执行的是一段同步代码，Promise刚创建完成，resolve方法就已经被调用了，因而紧跟着的输出显示p1是
+    resolved状态。我们通过两个setTimeout函数，延迟1s后再次输出p2、p3的状态，此时p2、p3已经执行完成，状态分别
+    变成resolved和rejected。
+    </pre>
   </p>
   <p>
     <h4>Generator 函数</h4>
@@ -155,9 +242,12 @@
   <p>
     <h4>async and await</h4>
     <a href="https://blog.csdn.net/sinat_17775997/article/details/76481923">Link to async</a>
+    <a href="https://juejin.im/post/596e142d5188254b532ce2da">Link to asyn</a>
     async(异步) 函数变体 <br>
-    async(异步) 函数总是返回 Promises <br>
+    async(异步) 函数总是返回 Promises 对象 <br>
     通过 await 处理 async(异步) 计算的结果和错误 <br>
+    the word await can be put in front of an expression to wait for a promise to resolve,
+     and only then continue the execution of the function.<br>
   </p>
 </body>
 </html>
