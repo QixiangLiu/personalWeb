@@ -7,8 +7,68 @@
   <meta name="author" content="Qixiang Liu">
   <meta name = "viewport" content="width=device-width initial-scale=1.0">
 </body>
-  <h3>MIPS</h3>
-  <p>
-    
-  </p>
+  <h2>Computer Architecture()</h2>
+  <h3>Chapter2:存储器层次结构设计</h3>
+  <pre>
+    <h4>缓存理解和优化</h4>
+    存储器性能（Lower）和处理器性能（Higher）差距越来越大。
+    块或行(block): 一次移动多个字
+    标记（Tag）：每个缓存块都一个标记，指名它与哪个存储器地址对应
+    组相联（set associate):哪些块可以放到缓存中，把一堆块打包放入组中并行查找。
+    只读简单，写入难。
+    缓存写入和存储器中的副本怎么保持一致：1）直写缓存（write-through）2)回写（write-back）这两种办法准备了缓冲区
+    存储器平均访问时间：=命中时间+缺失率*缺失代价（内存中替代块的时间，即趋缺失成本）
+    <h4>存储器性能优化</h4>
+    SARM: static：六个晶体管保存一个数据，不需要刷新
+    DRAM: dynamic：一个晶体管保存一个数据，信息的读取会破坏该信息，所以必须进行恢复，需要刷新
+    DDR：标准序列，降低电压，提高时钟频率
+    闪存：没有供电依然能保存内容，闪代表快速擦出。
+    <h4>虚拟存储器和虚拟机：提高计算机系统安全性</h4>
+    分页(Paging)虚拟存储器：将物理存储器化分为大小固定的块，每个进程有自己的地址空间。
+    分页机制：固定大小的页面（4KB or 8 KB）通过一个页表由虚拟地址空间映射到物理地址空间。
+    保护性限制：1）包含在每个页表项，2）可以决定读写，执行代码。只有操作系统可以修改更新页表。
+    TLB：因为分页虚拟器需要两次访问存储器，一次获取物理地址，一次获取数据，成本太高，我们需要把地址转化放在一个特殊的缓存中。
+    虚拟机（virtual memory）：
+  </pre>
+  <h3>附录A：MIPS</h3>
+  MIPS：64bit 载入-存储体系结构（Move/Copy data from/to memory）
+  MIPS 是一种RISC处理器。
+  MIPS指令格式：
+  <h3>附录B.4：虚拟存储器</h3>
+    <pre>
+
+      B.4 TLB的作用和步骤：
+    </pre>
+  <h3>附录C：流水线(Pipelining)</h3>
+  <pre>
+    流水线：一种将多条指令重叠执行的实现技术。一条指令的执行需要多个操作，流水线技术充分利用了这些操作之间的并行性。
+    流水线用于加快CPU速度的关键实现技术。 流水线就像汽车的装配线一样。
+    处理器周期的(Pocessor cycle)长度由最缓慢的流水线级(a pipe stage)所需时间决定。
+    In a computer, this processor cycle is usually 1 clock cycle (sometimes it is 2, rarely more).
+    流水线设计者的目标是平衡每条流水线的长度，相当于每条流水线完成时间差不多一样。理想状态下n个流水级的数目，可以提高n倍速度
+    RISC（精简指令集计算机）（Reduced instruction set computer）默认的体系结构MIPS。RISC 几个关键属性：
+      ■ All operations on data apply to data in registers and typically change the entire register (32 or 64 bits per register).
+      ■ The only operations that affect memory are load and store operations that move data from memory to a register or to memory from a register, respec- tively.
+        Load and store operations that load or store less than a full register (e.g., a byte, 16 bits, or 32 bits) are often available.
+      ■ The instruction formats are few in number, with all instructions typically being one size.
+    MIPS (3 classes of instructions) 3 类指令：
+      1) ALU instructions
+      2) Load and store instructions
+      3) Branches and jumps
+    Every instruction in this RISC subset can be implemented in at most 5 clock cycles.
+      1) Instruction fetch cycle (IF):
+          * Send the program counter (PC) to memory and fetch(取来) the current instruction from memory. Update the PC to the next sequential PC by adding 4 (since each MIPS
+          instruction is 4 bytes) to the PC
+      2) Instruction decode/register fetch cycle (ID):
+          * Decode the instruction and read the registers corresponding to register source specifiers from the register file. Do the equality test on the registers as they
+          are read, for a possible branch
+      3) Execution/effective address cycle (EX):
+          * Memory reference—The ALU adds the base register and the offset(抵消) to form the effective address
+      4) Memory access (MEM):
+          * If the instruction is a load, the memory does a read using the effective address computed in the previous cycle. If it is a store, then the memory writes the data
+           from the second register read from the register file using the effective address
+      5) Write-back cycle (WB):
+          * Register-Register ALU instruction or load instruction:
+              * Write the result into the register file, whether it comes from the memory system (for a load) or from the ALU (for an ALU instruction)
+  </pre>
 </html>
