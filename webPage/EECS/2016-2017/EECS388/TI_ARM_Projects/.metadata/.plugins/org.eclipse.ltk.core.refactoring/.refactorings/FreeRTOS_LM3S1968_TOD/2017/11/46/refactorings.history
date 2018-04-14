@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;FreeRTOS_LM3S1968_Time/Main_ADC.c&apos; to &apos;Main_Time.c&apos;" description="Rename resource &apos;Main_ADC.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Main_ADC.c" name="Main_Time.c" stamp="1510777190603" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;FreeRTOS_LM3S1968_TOD/Main_Time.c&apos; to &apos;Main_TOD.c&apos;" description="Rename resource &apos;Main_Time.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Main_Time.c" name="Main_TOD.c" stamp="1510777258433" updateReferences="true"/>
-</session>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;FreeRTOS_LM3S1968_ADC/Main_ReportSysTick.c&apos; to &apos;Main_ADC.c&apos;" description="Rename resource &apos;Main_ReportSysTick.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Main_ReportSysTick.c" name="Main_ADC.c" stamp="1508959584815" updateReferences="true"/>
-</session>

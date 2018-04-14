@@ -6,10 +6,87 @@
 
 <body>
   <div class="main">
-    <h2></h2>
-    <h3></h3>
+    <h2>Haskell</h2>
+    <p>
+      1) a statically typed language: it has to know all the types before the code is compiled
+    </p>
+    <h3>Commands</h3>
+    <p>
+      :set prompt "ghci> "       ---------change prompt Prelude> in the beginning
+      :l                         ---------load .hs file
+      :t                         ---------check type of expressions
+      :info Num/Eq               ---------infor of typeclasses
+      ghci Test.hs               ---------load Test.hs file and Prelude.hs(自带的) file
+    </p>
+    <h3>Chapter 2 Start</h3>
     <pre>
-      
+      1)simple arithmetic, addition, subtraction, division, and multiplication
+            Negative number with parentheses
+      2)Boolean algebra:
+            True == False   equal operator and must capitalize the first charcter.
+            5 /= 4          not equal
+            different types cannot compare. eg 5 == True // type error
+      3)Function prefix: function name, a space, and then parameters.
+        Function infix in two parameter with backticks eg. 92 'div' 2
+      4)Function definition: eg. doubleMe x = x + x    1)function name, a space, and then parameters, final is =;2)function cannot start the uppercase character
+      5)If statement: if..then..else, each statement must return values.
+      6)function name has one apostrophe('): a strict version of a function or a slightly modified version of a function or a variable
+      7)Lists: a sequence of values of the <b>same</b> types;eg. [False,True]::[Bool]
+          a): Add a element or a character in head eg.[1,2,3] == 1:2:3:[], add 3 first, then 2,last 1.
+          b)product [1,2,3,4] -> 24; maximum, minimum,sum,elem function
+          c)++ Add two lists or two strings eg. [1,2] ++ [3,4] ->[1,2,3,4]; "A" ++ "BC"->"ABC"
+          d)!!:  eg. [1,2,3]!!1 -> 2   ----> search value with index
+          e)head [5,4,3,2] -> 5 eg. head [] //error
+          f)tail [5,4,3,2] -> [4,3,2]
+          g)last [5,4,3,2] -> 2
+          h)init [5,4,3,2] -> [5,4,3]
+          i)length [5,4,3] -> 3
+          j)null [] return false,true    ----> True check empty list
+          k)reverse [3,2,1] ->[1,2,3]
+          l)take 3 [4,3,2,1] -> [4,3,2]  ---->Add
+          m)drop 2 [1,2,3,4] -> [3,4]    ---->remove
+      8)Tuples: use square brackets (): a squence of values of <b>diffreent</b> types; eg.(False,'a')::(Bool,Char)
+          a)fst (1,2)  return first parameter
+          b)snd (1,2)  return second parameter
+          c)zip
+    </pre>
+    <h3>Chapter 3 Type</h3>
+    <pre>
+      1) types variables: can be of any type; lower-case letter,eg. a,b;
+      2) typeclasses:
+          a) '->' means separation.
+          b) before '=>'symbol means class constraint
+          c) Eq: equality testing: == AND /=
+          d) Ord: an ordering: >, <,>=.<=. compare function
+          e) Show: return string
+          f) Read: read string, return a types
+          g) :: (type annotation)means specify type eg. read "4"::Float convert to float；type of
+          h) Enum: Lists, succ and pred function.
+          i) Bounded: minBound and maxBound, and <b>a tuple</b> eg. minBound::Int.
+          j) Num: All numbers
+          k) Integral: Int and Integer
+          l) Floating: Float and double
+          m) fromIntegral functon: fromIntegral (length [1,2,3,4]) + 3.2
+      3) types:
+          a) Int: bounded has minimum and maximum 32bits
+          b) Integer: not bounded
+          c) Float: single precision
+          d) double: double precision
+          e) Bool: True and False
+          f) Char: single quotes and a list of characters is a string
+      4) curried function: take their arguments one at a times
+          a) associate to the right
+          b) associate to the left
+      5) Polymorphic Functions: many formas if its type contains one or more type variables
+      6) Overloaded Function: if its type contans one or more class constraints. class constraint => function parameter -> return value;
+    </pre>
+    <h3>Chapter 4 Syntax</h3>
+    <pre>
+      1)pattern match:
+      2)'_' means donot care first (_,y,_) = y
+      3)':' eg. x:xs will bind the head of the list to x, the rest of it to xs;
+      4)The x:xs pattern is used a lot, especially with recursive functions. But patterns
+        that have : in them only match against lists of length 1 or more.
     </pre>
   </div>
 </body>

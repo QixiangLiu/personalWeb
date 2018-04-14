@@ -7,9 +7,40 @@
 <body>
   <div class="main">
     <h2></h2>
-    <h3></h3>
+    <h3>Regular Grammar</h3>
     <pre>
-
+      A third way of describing regular language is by means of certain grammars.
+      right-linear grammar ----> regular language
+      regular language     ----> right-linear grammar
+      A grammar G=(V,T,S,P) that right-linear if <b>all</b> productions are of
+                                                      A->xB,
+                                                  Or  A->x,  A,B are vaiables.
+      regular grammar is right-linear OR left-linear
+      lift-linear ---> right-linear grammar: A->Bv ----> A->v<sup>R</sup>B
+      A Pumping Lemma: Pigeonhole Principle: prove regular language that has DFA
+      • If the transition graph has no cycles, the language is finite and therefore regular.
+      • If the transition graph has a cycle with a nonempty label, the language is infinite. Conversely,
+      every infinite regular language has a dfa with such a cycle.
+      • If there is a cycle, this cycle can either be skipped or repeated an arbitrary number of times.
+       So, if the cycle has label v and if the string w1vw2 is in the language.
+    </pre>
+    <h3>Context-free language</h3>
+    <pre>
+      1)leftmost/rightmost: each step the leftmost/rightmost variable replaced
+      2)parse true/derivation:
+      3)Simple grammar or s-grammar and forms A->ax, any pair (A,a) at most once;
+      4)Properties: ambiguity(at least two distinct derivation trees), and unambiguous
+      5)Programming language(BNF)
+    </pre>
+    <h3>Pushdown Automate</h3>
+    <pre>
+      1)NPDA: M = (Q, Σ, Γ, δ, q0, z, F); first, change state, then replacment.
+    </pre>
+    <h3>Turing machine</h3>
+    <pre>
+      1)read-write head
+      2）M = (Q, Σ, Γ, δ, q0, □, F)；□ is blank; new state,a new type symbol,which replaced the old one,
+      and a move symbol, L or R.
     </pre>
   </div>
 </body>
