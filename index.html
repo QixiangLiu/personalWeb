@@ -36,6 +36,8 @@
 
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" required>
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
           <label>
             <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -95,15 +97,16 @@
           <p><button onclick="document.getElementById('id03').style.display='block'">Contact</button></p>
           <div id="id03" class="modal">
             <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <form class="modal-content animate" action="/action_page.php">
+            <form class="modal-content animate" action="webPage/php/contact.php" method="post">
               <div class="container">
                 <h1>Contact me</h1>
                 <hr>
                 <label for="title" style="float:left"><b>Title:</b></label>
-                <input type="text" placeholder="Enter Title" name="title"required>
+                <input type="text" placeholder="Enter Title" name="title" required>
                 <label for="content" style="float:left"><b>Content: </b></label><br>
-                <textarea name="content" placeholder="Enter something.. " rows="20"required style="resize:none"></textarea>
+                <textarea name="content" type="text" placeholder="Enter something.. " rows="20" required style="resize:none"></textarea>
                 <button type="submit" class="signupbtn">Send</button>
+                <button type="reset" class="signupbtn">Reset</button>
               </div>
             </form>
           </div>
@@ -112,7 +115,6 @@
           var modal = document.getElementById('id01');
           var modal2 = document.getElementById('id02');
           var modal3 = document.getElementById('id03');
-
           // When the user clicks anywhere outside of the modal, close it
           window.onclick = function(event) {
             if (event.target == modal) {
@@ -123,6 +125,7 @@
               modal3.style.display = "none";
             }
           }
+
           </script>
       </div>
     </div>
