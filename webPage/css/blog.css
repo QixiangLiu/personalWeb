@@ -325,7 +325,10 @@ make the two columns stack on top of each other instead of next to each other
     background-color: white;
     overflow: hidden;
 }
-/*=============================================footer=============================*/
+
+
+
+/*=============================================Footer=============================*/
 #footer{
     width:100%;
     padding: 1em;

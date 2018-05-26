@@ -11,8 +11,12 @@ if($title==''|| $content==''){
 }else{
   $query = "INSERT INTO Contact(title,content) VALUES ('$title','$content');";
     if($mysqli->query($query)){
-      echo "Submit successfully";
+      echo "Send successfully!";
     }
 }
 $mysqli->close();
+$url  =  "https://people.eecs.ku.edu/~q709l816/";
+echo "<script language = 'javascript' type = 'text/javascript'> ";
+echo "window.location.href = '$url' ";
+echo "</script>";
 ?>
