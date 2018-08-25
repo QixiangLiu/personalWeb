@@ -1,0 +1,94 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -g -Wall
+OBJ1 = HelloWorld
+OBJ2 = Intro
+OBJ3 = Temp
+OBJ4 = Triangle
+OBJ5 = Qua
+OBJ6 = ASCII
+OBJ7 = ASCII2
+OBJ8 = Food
+OBJ9 = Fib
+OBJ10 = Pyramid
+OBJ11 = Multiple
+OBJ12 = NGG
+OBJ13 = WGG
+OBJ14 = BasicArray
+OBJ15 = StringArray
+OBJ16 = FileReading
+OBJ17 = FileRead
+OBJ18 = Arrayman
+EXE = $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4) $(OBJ5) $(OBJ6) $(OBJ7) $(OBJ8) $(OBJ9) $(OBJ10) $(OBJ11)\
+$(OBJ12) $(OBJ13) $(OBJ14) $(OBJ15) $(OBJ16) $(OBJ17) $(OBJ18)
+VPATH = Lab5/Exercise1:Lab5/Exercise2
+FUNC = func.h func.hpp
+RM = rm -f
+.PHONY: all
+all: $(EXE)
+#----------OBJ1---------------
+$(OBJ1): $(OBJ1).o
+	$(CXX) $(CXXFLAGS) $< -o $@
+$(OBJ1).o: $(OBJ1).cpp
+	$(CXX) $(CXXFLAGS) -c $<
+#----------OBJ2---------------
+$(OBJ2): $(OBJ2).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+$(OBJ2).o: $(OBJ2).cpp
+		$(CXX) $(CXXFLAGS) -c $<
+#----------OBJ3---------------
+$(OBJ3): $(OBJ3).o $(FUNC)
+		$(CXX) $(CXXFLAGS) -o $@ $<
+$(OBJ3).o: $(OBJ3).cpp $(FUNC)
+		$(CXX) $(CXXFLAGS) -c $<
+
+#----------OBJ4---------------
+$(OBJ4): $(OBJ4).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+$(OBJ4).o: $(OBJ4).cpp
+		$(CXX) $(CXXFLAGS) -c $<
+#----------OBJ5---------------
+$(OBJ5): $(OBJ5).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ6----------------
+$(OBJ6): $(OBJ6).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ7----------------
+$(OBJ7): $(OBJ7).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ8----------------
+$(OBJ8): $(OBJ8).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ9----------------
+$(OBJ9): $(OBJ9).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ10----------------
+$(OBJ10): $(OBJ10).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ11----------------
+$(OBJ11): $(OBJ11).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ12----------------
+$(OBJ12): $(OBJ12).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ13----------------
+$(OBJ13): $(OBJ13).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ14----------------
+$(OBJ14): $(OBJ14).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ15----------------
+$(OBJ15): $(OBJ15).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ16----------------
+$(OBJ16): $(OBJ16).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ17----------------
+$(OBJ17): $(OBJ17).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+#----------OBJ18----------------
+$(OBJ18): $(OBJ18).o
+		$(CXX) $(CXXFLAGS) $< -o $@
+.PHONY: clean
+clean:
+	find . -name "*.o" -exec $(RM) {} \;
+	$(RM) $(EXE)
