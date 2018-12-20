@@ -1,8 +1,0 @@
-digraph {
-	rankdir = LR;
-	size = "8,5"
-	node [ shape = doublecircle ]; S ;
-	node [ shape = circle ];
-	S -> A [ label = "a" ];
-	A -> S [ label = "a" ];
-}

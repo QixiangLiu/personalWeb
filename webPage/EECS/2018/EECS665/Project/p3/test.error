@@ -1,8 +1,0 @@
-//Error 1 struct must have variables in body
-struct {};
-
-//Error 2: structDecl must appear global scope, it cannot is in function body
-
-//Error 3: function body has statements, so if-else and while just appear in function
-
-//Error 4: u can not associate two more == != < >....

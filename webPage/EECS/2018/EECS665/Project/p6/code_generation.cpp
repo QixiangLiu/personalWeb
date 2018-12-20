@@ -7,6 +7,9 @@
 LILC::LilC_Backend* b;
 std::fstream out;
 
+/*
+It is a bad project: The project is hard to understand MIPS and register.
+*/
 namespace LILC{
 
 //LilC_Compiler in lilc_compiler.cpp nameAnalysis before typeAnalysis; final codeGen
@@ -183,11 +186,7 @@ bool TrueNode::codeGen(){
 	b->genPush(LilC_Backend::T0);
 	return true;
 }
-bool FalseNode::codeGen(){
-	b->generate("li", LilC_Backend::T0, LilC_Backend::FALSE);
-	b->genPush(LilC_Backend::T0);
-	return true;
-}
+//TODO: FalseNode
 bool PostIncStmtNode::codeGen(){
 	// ExpNode * myExp;
 	IdNode* idExp = dynamic_cast<IdNode*>(myExp);
@@ -201,20 +200,8 @@ bool PostIncStmtNode::codeGen(){
 return true;
 
 }
-bool PostDecStmtNode::codeGen(){
-	// ExpNode * myExp;
-	IdNode* idExp = dynamic_cast<IdNode*>(myExp);
-	if(idExp==nullptr){std::cerr << "ERROR: PostIncStmtNode\n";}
-	idExp->codeGen();
-	b->genPop(LilC_Backend::T1);
-	idExp->genAddr();//only IdNode
-	b->genPop(LilC_Backend::T0);
-	b->generateWithComment("li","No subi!!","$t3","1");
-	b->generate("sub",LilC_Backend::T1,LilC_Backend::T1,"$t3");
-	b->generate("sw",LilC_Backend::T1,"0($t0)");
-return true;
+//TODO: PostDecStmtNode
 
-}
 bool ReadStmtNode::codeGen(){
 	// ExpNode * myExp;
 	IdNode* idExp = dynamic_cast<IdNode*>(myExp);//only id
@@ -255,42 +242,9 @@ bool IfStmtNode::codeGen(){
 return true;
 
 }
-bool IfElseStmtNode::codeGen(){
-	// ExpNode * myExp;
-	// DeclListNode * myDeclsT;
-	// StmtListNode * myStmtsT;
-	// DeclListNode * myDeclsF;
-	// StmtListNode * myStmtsF;
-	std::string label = b->getCurrLabel();
-	myExp->codeGen();
-	b->genPop(LilC_Backend::T0);
-	b->generate("beq",LilC_Backend::T0,LilC_Backend::FALSE,"FalseLabel"+label);// T0 == false
-	b->add();
-	myStmtsT->codeGen();
-	b->generate("j","True_Exit"+label);
-	b->genLabel("FalseLabel"+label);
-	myStmtsF->codeGen();
-	b->genLabel("True_Exit"+label);
+//TODO: While Statement ifElseStatment
 
-return true;
-}
-bool WhileStmtNode::codeGen(){
-	//	ExpNode * myExp;
-		// DeclListNode * myDecls;
-		// StmtListNode * myStmts;
-		std::string label = b->getCurrLabel();
-		b->genLabel("Loop"+label);
-		myExp->codeGen();
-		b->genPop(LilC_Backend::T0);
-		b->generate("beq",LilC_Backend::T0,LilC_Backend::FALSE,"FalseLabel"+label);// T0 == false
-		b->add();
-		myStmts->codeGen();
-		b->generate("j","Loop"+label);
-		b->genLabel("FalseLabel"+label);
-
-return true;
-
-}
+//TODO: CallStmtNode CallExpNode
 bool CallStmtNode::codeGen(){
 	//	CallExpNode * myCallExp;
 	myCallExp->codeGen();//after the code; the code will disapper
@@ -403,21 +357,8 @@ bool BinaryExpNode::codeGen(){
 		b->genPop(LilC_Backend::T0);
 		b->generate("mul",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);
 		b->genPush(LilC_Backend::T0);
-	}else if(myOp()=="/"){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);
-		b->genPop(LilC_Backend::T0);
-		b->generate("div",LilC_Backend::T0,LilC_Backend::T1);
-		b->generate("mflo",LilC_Backend::T0); //quotient moved into $t1
-		b->genPush(LilC_Backend::T0);
-	}else if(myOp()=="&&"){
-		if(left=="false"){
-			myExp1->codeGen(); //push false to stack; all is false
-		}else if(left=="true"){
-			myExp2->codeGen(); //check right
-		}
-	}else if(myOp()=="||"){
+	}
+	else if(myOp()=="||"){
 		if(left == "true"){
 			myExp1->codeGen();
 		}else{
@@ -430,60 +371,13 @@ bool BinaryExpNode::codeGen(){
 		b->genPop(LilC_Backend::T0);//left
 		b->generate("seq",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
 		b->genPush(LilC_Backend::T0);
-	}else if(myOp()=="<"){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);//right
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("slt",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
-		b->genPush(LilC_Backend::T0);
-	}else if(myOp()==">"){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);//right
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("sgt",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
-		b->genPush(LilC_Backend::T0);
-	}else if(myOp()=="<="){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);//right
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("sle",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
-		b->genPush(LilC_Backend::T0);
-	}else if(myOp()==">="){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);//right
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("sge",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
-		b->genPush(LilC_Backend::T0);
-	}else if(myOp()=="!="){
-		myExp1->codeGen();
-		myExp2->codeGen();
-		b->genPop(LilC_Backend::T1);//right
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("sne",LilC_Backend::T0,LilC_Backend::T0,LilC_Backend::T1);// the right one will be on the top of the stack.
-		b->genPush(LilC_Backend::T0);
 	}
+	/*
+	TODO: other operator
+	*/
 	return true;
 }
 
-bool UnaryExpNode::codeGen(){
-	//myExp
-	if(myExp->expTypeAnalysis()=="bool"){//NotNode
-		myExp->codeGen();
-		b->genPop(LilC_Backend::T0);//left
-		b->generate("xori",LilC_Backend::T0,LilC_Backend::T0,"1");//#t0 = !t0
-		b->genPush(LilC_Backend::T0);
-	}else{ //MinusNode
-		myExp->codeGen();
-		b->genPop(LilC_Backend::T0);//-10 = -1 * 10
-		b->generate("mul",LilC_Backend::T0,LilC_Backend::T0,"-1");
-		b->genPush(LilC_Backend::T0);
-	}
-	return true;
-}
 
 
 

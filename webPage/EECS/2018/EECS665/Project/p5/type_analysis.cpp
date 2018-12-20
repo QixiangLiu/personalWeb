@@ -137,15 +137,6 @@ bool PostIncStmtNode::typeAnalysis(){
 		return Err::badTypeMismatch(pos);
 	}
 }
-bool PostDecStmtNode::typeAnalysis(){
-	std::string type = myExp->getType();
-	if(type=="int"){
-		return true;
-	}else{
-		std::string pos = myExp->getPosition();
-		return Err::badTypeMismatch(pos);
-	}
-}
 bool ReadStmtNode::typeAnalysis(){
 	//ExpNode * myExp; input >> a //only one variables
 	std::string type = myExp->getType();
@@ -157,27 +148,6 @@ bool ReadStmtNode::typeAnalysis(){
 			return Err::badReadStructName(pos);
 		}else{
 			return Err::badReadStructVal(pos);
-		}
-	}else{
-		return true;
-	}
-}
-bool WriteStmtNode::typeAnalysis(){
-	//output << f + 3 + a + g(); more varables
-	std::string type = myExp->typeAn();
-	std::string pos = myExp->getPosition();
-	if(type == "error"){
-		return "error";
-	}
-	if(type!="int"&&type!="bool"&&type!="string"){
-		if(type.find("->")!=std::string::npos){
-			return Err::badWriteFun(pos);
-		}else if(type=="void"){
-			return Err::badWriteVoid(pos);
-		}else if(type=="struct"){
-			return Err::badWriteStructName(pos);
-		}else{
-			return Err::badWriteStructVal(pos);
 		}
 	}else{
 		return true;
@@ -200,45 +170,6 @@ bool IfStmtNode::typeAnalysis(){
 	return flag&&flag2;
 
 }
-bool IfElseStmtNode::typeAnalysis(){
-	// ExpNode * myExp;
-	// DeclListNode * myDeclsT;
-	// StmtListNode * myStmtsT;
-	// DeclListNode * myDeclsF;
-	// StmtListNode * myStmtsF;
-	bool flag1 = true;
-	bool flag2 = true;
-	bool flag3 = true;
-	std::string type = myExp->typeAn();
-	std::string pos = myExp->getPosition();
-	if(type=="error"||type!="bool"){
-		Err::badIf(pos);
-		flag1 = false;
-	}
-	myStmtsT->setReturnType(returnType);
-	myStmtsF->setReturnType(returnType);
-	flag2 = myStmtsT->typeAnalysis();
-	flag3 = myStmtsF->typeAnalysis();
-	return flag1&&flag2&&flag3;
-
-}
-bool WhileStmtNode::typeAnalysis(){
-	// ExpNode * myExp;
-	// DeclListNode * myDecls;
-	// StmtListNode * myStmts;
-	bool flag = true;
-	bool flag2 = true;
-	std::string type = myExp->typeAn();
-	std::string pos = myExp->getPosition();
-	if(type=="error"||type!="bool"){
-		Err::badWhile(pos);
-		flag = false;
-	}
-	myStmts->setReturnType(returnType);
-	flag = myStmts->typeAnalysis();
-	return flag&&flag2;
-
-}
 bool CallStmtNode::typeAnalysis(){
 	//	CallExpNode * myCallExp;
 	if(myCallExp -> typeAn()=="error"){
@@ -247,41 +178,6 @@ bool CallStmtNode::typeAnalysis(){
 		return true;
 	}
 }
-bool CallExpNode::typeAnalysis(){
-	std::cout << "Do not need it; CallExpNode\n";
-	return true;
-}
-int ExpListNode::getSize(){
-	if(myExps.empty()){
-		return 0;
-	}else{
-		return myExps.size();
-	}
-}
-bool ExpListNode::typeAnalysis(){
-	return true;
-}
-std::string* ExpListNode::typeAn(){
-	if(myExps.size()==0){
-		return nullptr;
-	}
-	bool valid = true;
-	type = new string[myExps.size()];
-	pos = new string[myExps.size()];
-
-	int i=0;
-	for(ExpNode * exp : myExps) {
-		std::string t=exp->typeAn();
-		//std::cout << t;
-		pos[i] = exp->getPosition();
-		type[i] = t;
-		i++;
-	}
-	return type;
-}
-std::string* ExpListNode::getPosition2(){return pos;}
-
-
 std::string CallExpNode::typeAn(){
 	//g();
 	// IdNode * myId;
@@ -512,47 +408,5 @@ std::string BinaryExpNode::typeAn(){
 	return myLHS;
 }
 
-
-
-
-
-/*
-* Creates a comma-separated string listing the types of formals.
-* This function mostly serves as a helper for
-* FnDeclNode::getTypeString() in building a function
-* type signature for unparsing.
-*/
-std::string FormalsListNode::getTypeString(){
-	std::string res = "";
-	bool first = true;
-	for (FormalDeclNode * decl : *myFormals){
-		if (first){ first = false; }
-		else { res += ","; }
-		res += decl->getTypeString();
-	}
-	return res;
-}
-
-
-
-
-/*
-* Create a string representing the type signature of a
-* function.  This function is used for building a function
-* type signature for unparsing.
-*/
-std::string FnDeclNode::getTypeString(){
-	return myFormals->getTypeString()
-		+ "->"
-		+ myRetType->getTypeString();
-}
-
-/*
-* The type of a declaration is that of the
-* type it declares
-*/
-std::string FormalDeclNode::getTypeString(){
-	return myType->getTypeString();
-}
 
 } // End namespace LILC
