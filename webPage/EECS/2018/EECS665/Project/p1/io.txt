@@ -1,0 +1,32 @@
+INPUT: ex1.dot af
+OUTPUT: 1
+
+INPUT: ex1.dot a
+OUTPUT: 0
+
+INPUT: ex1.dot aa
+OUTPUT: 0
+
+INPUT: ex1.dot adi
+OUTPUT: 0
+
+INPUT: ex1.dot adiiiiiii
+OUTPUT: 0
+
+INPUT: ex1.dot adiiiiiijgk
+OUTPUT: 1
+
+INPUT: ex1.dot bc
+OUTPUT: 1
+
+INPUT: ex1.dot abc
+OUTPUT: 0
+
+INPUT: ex2.dot aa
+OUTPUT: 1
+
+INPUT: ex2.dot a
+OUTPUT: 0
+
+INPUT: ex2.dot b
+OUTPUT: 0

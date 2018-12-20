@@ -1,0 +1,67 @@
+int a;
+int c;
+void d;
+struct myFirst {
+    bool a;
+    int c;
+    struct mySecond avc;
+};
+struct myThird abcde;
+int abb(int a,int b,int c){
+    int c;
+    e = (3 + 5);
+    a = 5;
+    if ((2 == 2)) {
+        int a;
+        bool c;
+        a = "12";
+        if ((3 == 3)) {
+            int a;
+        }
+    }
+}
+int function2(){
+    a--;
+    b++;
+    INPUT >> a;
+    OUTPUT << c;
+    return a;
+}
+void function3(){
+    while (true) {
+        int a;
+        int c;
+        if ((3 < 5)) {
+            struct a b;
+        }
+        else {
+            a = (3 - 5);
+        }
+    }
+    return;
+}
+bool function4(){
+    if ((b == (-1))) {
+        x = ((4 + (3 * 5)) - y);
+        while (c) {
+            y = ((y * 2) + x);
+        }
+    }
+    else {
+        x = 0;
+    }
+    return false;
+}
+void function5(int a,bool c){
+    while (false) {
+        a = (((-1) * c) + 1);
+    }
+    function3();
+}
+void function6(){
+    INPUT >> ((fn1.fn2).value);
+    if ((a == (a.c))) {
+        ((a.b).b) = (-1);
+    }
+    (function4.function3) = (((f3.value) * (f2.value)) / c);
+}

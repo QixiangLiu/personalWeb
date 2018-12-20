@@ -1,0 +1,59 @@
+//Test 1 Reserved words:
+bool  int   void  true  false  struct
+cin   cout  if    else  while  return
+
+#Test 2 good identifer:
+_123 _abc _abc123 _asd_123 __
+abcd asd_123
+
+#Test 3 Integer: good string and warning overflow
+1 23 345 4567 78901 234567 8901234 56789012 2147483646 2147483647 2147483648 //INT_MAX = 2147483647
+
+//Test 4 String: good string
+""
+"123?" "344"
+"&!88"
+"use \n to denote a newline character"
+"use \t to denote a tab character"
+"use \' to denote a single quote character"
+"use \? to denote a question character"
+"use \? to denote a question character?"
+"include a quote like this \" and a backslash like this \\"
+"'1234'?"
+
+//bad string: Bad error may be not specific detailed:
+"unterminated
+"also unterminated \"
+"backslash followed by space: \ is not allowed"
+"bad escaped character: \n \a AND not terminated"
+
+
+//Test 5 one- or two-character symbols
+{      }      (      )      ;
+,      .      <<     >>     ++
+--     +      -      *      /
+!      &&     ||     ==     !=
+<      >      <=     >=     =
+
+//Test 6: Combination of everything
+"123"""
+"123" "213" "asdf123"
+"123"bdsaf""
+"123"asd"  //String + ID + error
+123sadf   //INTLiteral and IDTOKEN
+123""asd_
+_2234sd
+123_asd
+"""""1234
+
+
+#####Test 7: Lil'c: Sum of 1~n
+int n;
+int sum = 0;
+int i=1;
+string a = "how many number u need?";
+cin >> n;
+while(i<=n){
+ sum = sum + i;
+}
+cout << sum;

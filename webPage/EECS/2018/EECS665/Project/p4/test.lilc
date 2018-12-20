@@ -1,0 +1,31 @@
+int glob;
+bool glob2;
+struct Point {
+    int x;
+    int y;
+    bool c;
+};
+int f(int x, bool b) { }
+void g() {
+    int a;
+    bool b;
+    struct Point p;
+    p.x = a;
+    b = a == 3;
+    f(a + p.y*2, b);
+    g();
+}
+int main(bool d,int a){
+	int c;
+	if(c == a){
+		int c;
+		bool d;
+		d =1;
+		while(d){
+			c=0;
+			c++;
+		}
+	}
+	f(a,1);
+	return d;
+}

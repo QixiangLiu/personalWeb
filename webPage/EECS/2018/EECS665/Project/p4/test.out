@@ -1,0 +1,36 @@
+int glob;
+bool glob2;
+struct Point
+{
+    int x;
+    int y;
+    bool c;
+};
+int f(int x, bool b)
+{
+}
+void g()
+{
+    int a;
+    bool b;
+    struct Point p;
+    p(Point).x(int) = a(int);
+    b(bool) = (a(int) == 3);
+    f(int,bool->int)((a(int) + p(Point).y(int) * 2), b(bool));
+    g(->void)();
+}
+int main(bool d, int a)
+{
+    int c;
+    if((c(int) == a(int))) {
+        int c;
+        bool d;
+        d(bool) = 1;
+        while(d(bool)) {
+            c(int) = 0;
+            c(int)++;
+        }
+    }
+    f(int,bool->int)(a(int), 1);
+    return d(bool);
+}

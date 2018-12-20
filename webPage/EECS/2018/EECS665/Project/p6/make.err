@@ -1,0 +1,4 @@
+make lilcc
+make[1]: Entering directory '/home/drew/p6_prep/p6'
+make[1]: 'lilcc' is up to date.
+make[1]: Leaving directory '/home/drew/p6_prep/p6'
