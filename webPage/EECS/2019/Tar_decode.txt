@@ -1,0 +1,59 @@
+Tar.gz encode:
+
+  before filename: test.txt
+  password：123@123
+  after filename: test.txt.des3
+  tar -zcvf - test.txt |openssl des3 -salt -k 123@123 | dd of=test.txt.des3
+
+Tar.gz decode:
+  filename: test.txt.des3
+  password: 123@123
+  dd if=test.txt.des3 |openssl des3 -d -k 123@123 | tar zxf -
+
+Different types of files:
+Zip: in windows, mac, and linux
+
+  To compress a directory with zip do the following:
+
+  # zip -r archive_name.zip directory_to_compress
+
+  Here’s how you extract a zip archive:
+
+  # unzip archive_name.zip
+
+Tar in Linux:
+  To compression:
+
+  # tar -cvf archive_name.tar directory_to_compress
+
+  And to extract the archive:
+
+  # tar -xvf archive_name.tar.gz
+
+  Like with the tar format you can optionally extract the files to a different directory:
+
+  # tar -xvf archive_name.tar -C /tmp/extract_here/
+
+
+TAR.GZ: most compression
+  To compress a directory use the following syntax:
+
+  # tar -zcvf archive_name.tar.gz directory_to_compress
+
+  To decompress an archive use the following syntax:
+
+  # tar -zxvf archive_name.tar.gz
+
+  This will extract the files in the archive_name.tar.gz archive in the current directory. Like with the tar format you can optionally extract the files to a different directory:
+
+  # tar -zxvf archive_name.tar.gz -C /tmp/extract_here/
+
+TAR.BZ2:
+
+  Here’s how you compress a directory using tar.bz2:
+
+  # tar -jcvf archive_name.tar.bz2 directory_to_compress
+
+  This will extract the files in the archive_name.tar.bz2 archive in the current directory. To extract the files to a different directory use:
+
+  # tar -jxvf archive_name.tar.bz2 -C /tmp/extract_here/

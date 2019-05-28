@@ -1,0 +1,40 @@
+Name: Qixiang Liu
+KUID: 2856114
+Lab 1 Report
+Vim Editor
+
+
+Question 1:
+	a) Open Source file: vim simple.c
+	b) Copy the file 12: 12yy
+	c) Quit Source file: q!
+	d) Create 3 files  : vim a.c b.c c.c
+	e) Paste files     : P
+	f) go to next file : :wnext
+	g) Then Paste again: P
+	h) next file (c.c) : :wnext and P
+	i) Quit files	   : :wq
+
+
+Question 2:
+	a) Open a simple.c: vim simple.c
+	b) Open a simple.h: :Vex --choose a exist simple.h
+	c) Switch to other: <ctrl-w> w
+	d) Inset some text: i
+	e) Save and quit  : :wq
+
+Question 3:
+	a) use catgs in terminal : ctags -R *
+	b) with cursor on unknown function: ctrl-]
+	c) go back : ctrl + t
+
+Question 4:
+	Hint: \s means: a space or a tab
+	a) Removing leading space and tabs: :%s/^\s\+//e  OR :%le
+	b) remove new lines: :g/^$/d
+
+Question 5:
+	a) :s%/Bill Self/basketball genius Bill Self/g
+	b) set textwidth: :set textwidth=80
+	c) Visual all texts: v and shift+}
+	d) reformat files: gq

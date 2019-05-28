@@ -1,0 +1,155 @@
+==7559== Memcheck, a memory error detector
+==7559== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7559== Using Valgrind-3.14.0.GIT and LibVEX; rerun with -h for copyright info
+==7559== Command: /Users/qixiang/Documents/2019Spring/678/Project/quash/quash
+==7559== 
+==7559== warning: connection to image /Users/qixiang/Documents/2019Spring/678/Project/quash/quash.dSYM/Contents/Resources/DWARF/quash failed
+==7559==          no symbols or debug info loaded
+==7559== warning: connection to image /Users/qixiang/Documents/2019Spring/678/Project/quash/quash.dSYM/Contents/Resources/DWARF/quash failed
+==7559==          no symbols or debug info loaded
+==7624== 
+==7624== HEAP SUMMARY:
+==7624==     in use at exit: 94,640 bytes in 183 blocks
+==7624==   total heap usage: 211 allocs, 28 frees, 120,954 bytes allocated
+==7624== 
+==7624== 72 bytes in 3 blocks are possibly lost in loss record 36 of 62
+==7624==    at 0x1000C9C32: calloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7624==    by 0x1007747E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==7624==    by 0x1007877DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==7624==    by 0x100024C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==7624==    by 0x100024E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==7624==    by 0x10023F71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==7624==    by 0x100774075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==7624==    by 0x1001C9B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==7624==    by 0x1001C9B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==7624==    by 0x1000D89C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==7624==    by 0x100036AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7624==    by 0x100036CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7624== 
+==7624== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 57 of 62
+==7624==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7624==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x10061215A: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7624==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7624==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7624==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7624==    by 0x100004984: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x100004DF7: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x1000010F3: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x10023D014: start (in /usr/lib/system/libdyld.dylib)
+==7624== 
+==7624== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 58 of 62
+==7624==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7624==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x10061216B: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7624==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7624==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7624==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7624==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7624==    by 0x100004984: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x100004DF7: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x1000010F3: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7624==    by 0x10023D014: start (in /usr/lib/system/libdyld.dylib)
+==7624== 
+==7624== LEAK SUMMARY:
+==7624==    definitely lost: 32 bytes in 2 blocks
+==7624==    indirectly lost: 4,096 bytes in 2 blocks
+==7624==      possibly lost: 72 bytes in 3 blocks
+==7624==    still reachable: 65,796 bytes in 9 blocks
+==7624==         suppressed: 24,644 bytes in 167 blocks
+==7624== Reachable blocks (those to which a pointer was found) are not shown.
+==7624== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7624== 
+==7624== For counts of detected and suppressed errors, rerun with: -v
+==7624== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 13 from 13)
+==7662== 
+==7662== HEAP SUMMARY:
+==7662==     in use at exit: 94,938 bytes in 185 blocks
+==7662==   total heap usage: 218 allocs, 33 frees, 122,608 bytes allocated
+==7662== 
+==7662== 72 bytes in 3 blocks are possibly lost in loss record 37 of 64
+==7662==    at 0x1000C9C32: calloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7662==    by 0x1007747E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==7662==    by 0x1007877DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==7662==    by 0x100024C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==7662==    by 0x100024E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==7662==    by 0x10023F71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==7662==    by 0x100774075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==7662==    by 0x1001C9B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==7662==    by 0x1001C9B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==7662==    by 0x1000D89C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==7662==    by 0x100036AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7662==    by 0x100036CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7662== 
+==7662== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 59 of 64
+==7662==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7662==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x10061215A: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7662==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7662==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7662==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7662==    by 0x100004984: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x100004DF7: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x1000010F3: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x10023D014: start (in /usr/lib/system/libdyld.dylib)
+==7662== 
+==7662== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 60 of 64
+==7662==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7662==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x10061216B: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7662==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7662==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7662==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7662==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7662==    by 0x100004984: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x100004DF7: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x1000010F3: ??? (in /Users/qixiang/Documents/2019Spring/678/Project/quash/quash)
+==7662==    by 0x10023D014: start (in /usr/lib/system/libdyld.dylib)
+==7662== 
+==7662== LEAK SUMMARY:
+==7662==    definitely lost: 32 bytes in 2 blocks
+==7662==    indirectly lost: 4,096 bytes in 2 blocks
+==7662==      possibly lost: 72 bytes in 3 blocks
+==7662==    still reachable: 66,094 bytes in 11 blocks
+==7662==         suppressed: 24,644 bytes in 167 blocks
+==7662== Reachable blocks (those to which a pointer was found) are not shown.
+==7662== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7662== 
+==7662== For counts of detected and suppressed errors, rerun with: -v
+==7662== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 13 from 13)
+==7559== 
+==7559== HEAP SUMMARY:
+==7559==     in use at exit: 84,364 bytes in 168 blocks
+==7559==   total heap usage: 227 allocs, 59 frees, 118,938 bytes allocated
+==7559== 
+==7559== 72 bytes in 3 blocks are possibly lost in loss record 28 of 46
+==7559==    at 0x1000C9C32: calloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7559==    by 0x1007747E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==7559==    by 0x1007877DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==7559==    by 0x100024C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==7559==    by 0x100024E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==7559==    by 0x10023F71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==7559==    by 0x100774075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==7559==    by 0x1001C9B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==7559==    by 0x1001C9B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==7559==    by 0x1000D89C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==7559==    by 0x100036AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7559==    by 0x100036CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7559== 
+==7559== LEAK SUMMARY:
+==7559==    definitely lost: 0 bytes in 0 blocks
+==7559==    indirectly lost: 0 bytes in 0 blocks
+==7559==      possibly lost: 72 bytes in 3 blocks
+==7559==    still reachable: 66,118 bytes in 11 blocks
+==7559==         suppressed: 18,174 bytes in 154 blocks
+==7559== Reachable blocks (those to which a pointer was found) are not shown.
+==7559== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7559== 
+==7559== For counts of detected and suppressed errors, rerun with: -v
+==7559== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)

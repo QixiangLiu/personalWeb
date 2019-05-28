@@ -1,0 +1,91 @@
+==7174== Memcheck, a memory error detector
+==7174== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7174== Using Valgrind-3.14.0.GIT and LibVEX; rerun with -h for copyright info
+==7174== Command: /Users/qixiang/Documents/2019Spring/678/Project/quash/quash
+==7174== 
+==7640== 
+==7640== HEAP SUMMARY:
+==7640==     in use at exit: 160,176 bytes in 184 blocks
+==7640==   total heap usage: 214 allocs, 30 frees, 187,754 bytes allocated
+==7640== 
+==7640== 72 bytes in 3 blocks are possibly lost in loss record 36 of 63
+==7640==    at 0x1000C9C32: calloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7640==    by 0x1007747E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==7640==    by 0x1007877DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==7640==    by 0x100024C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==7640==    by 0x100024E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==7640==    by 0x10023F71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==7640==    by 0x100774075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==7640==    by 0x1001C9B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==7640==    by 0x1001C9B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==7640==    by 0x1000D89C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==7640==    by 0x100036AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7640==    by 0x100036CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7640== 
+==7640== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 57 of 63
+==7640==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7640==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x10061215A: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7640==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7640==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7640==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7640==    by 0x100004984: create_process (execute.c:413)
+==7640==    by 0x100004DF7: run_script (execute.c:489)
+==7640==    by 0x1000010F3: main (quash.c:141)
+==7640== 
+==7640== 2,064 (16 direct, 2,048 indirect) bytes in 1 blocks are definitely lost in loss record 58 of 63
+==7640==    at 0x1000C95C6: malloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7640==    by 0x100616139: _nc_table_new (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x10061216B: _notify_init_globals (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x10066FEFF: _os_once (in /usr/lib/system/libsystem_platform.dylib)
+==7640==    by 0x10066FED3: _os_alloc_once (in /usr/lib/system/libsystem_platform.dylib)
+==7640==    by 0x10061222E: _notify_fork_child (in /usr/lib/system/libsystem_notify.dylib)
+==7640==    by 0x1000D8B12: libSystem_atfork_child (in /usr/lib/libSystem.B.dylib)
+==7640==    by 0x1002D5682: fork (in /usr/lib/system/libsystem_c.dylib)
+==7640==    by 0x100004984: create_process (execute.c:413)
+==7640==    by 0x100004DF7: run_script (execute.c:489)
+==7640==    by 0x1000010F3: main (quash.c:141)
+==7640== 
+==7640== LEAK SUMMARY:
+==7640==    definitely lost: 32 bytes in 2 blocks
+==7640==    indirectly lost: 4,096 bytes in 2 blocks
+==7640==      possibly lost: 72 bytes in 3 blocks
+==7640==    still reachable: 65,796 bytes in 9 blocks
+==7640==         suppressed: 90,180 bytes in 168 blocks
+==7640== Reachable blocks (those to which a pointer was found) are not shown.
+==7640== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7640== 
+==7640== For counts of detected and suppressed errors, rerun with: -v
+==7640== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 13 from 13)
+==7174== 
+==7174== HEAP SUMMARY:
+==7174==     in use at exit: 84,038 bytes in 165 blocks
+==7174==   total heap usage: 196 allocs, 31 frees, 111,572 bytes allocated
+==7174== 
+==7174== 72 bytes in 3 blocks are possibly lost in loss record 27 of 44
+==7174==    at 0x1000C9C32: calloc (in /usr/local/Cellar/valgrind/HEAD-2b0aa0a/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==7174==    by 0x1007747E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==7174==    by 0x1007877DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==7174==    by 0x100024C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==7174==    by 0x100024E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==7174==    by 0x10023F71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==7174==    by 0x100774075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==7174==    by 0x1001C9B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==7174==    by 0x1001C9B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==7174==    by 0x1000D89C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==7174==    by 0x100036AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7174==    by 0x100036CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==7174== 
+==7174== LEAK SUMMARY:
+==7174==    definitely lost: 0 bytes in 0 blocks
+==7174==    indirectly lost: 0 bytes in 0 blocks
+==7174==      possibly lost: 72 bytes in 3 blocks
+==7174==    still reachable: 65,792 bytes in 8 blocks
+==7174==         suppressed: 18,174 bytes in 154 blocks
+==7174== Reachable blocks (those to which a pointer was found) are not shown.
+==7174== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==7174== 
+==7174== For counts of detected and suppressed errors, rerun with: -v
+==7174== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)

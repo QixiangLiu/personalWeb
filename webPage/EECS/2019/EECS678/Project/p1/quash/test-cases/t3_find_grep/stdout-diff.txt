@@ -1,0 +1,4 @@
+1d0
+< /Users/qixiang/Documents/2019Spring/678/Project/quash/test-cases/t3_find_grep/sandbox/.valgrind_expected.txt
+4a4
+> /Users/qixiang/Documents/2019Spring/678/Project/quash/test-cases/t3_find_grep/sandbox/.valgrind_expected.txt

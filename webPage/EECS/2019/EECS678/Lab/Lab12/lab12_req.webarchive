@@ -1,0 +1,460 @@
+bplist00Ñ_WebMainResourceÕ	
+_WebResourceMIMEType_WebResourceTextEncodingName^WebResourceURL_WebResourceFrameName_WebResourceDataYtext/htmlUUTF-8_Ahttp://www.ittc.ku.edu/~heechul/courses/eecs678/S19/labs/kvm.htmlPO†ø<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta content="en-us" http-equiv="Content-Language">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Untitled 1</title>
+<style type="text/css">
+.auto-style1 {
+        font-size: xx-large;
+}
+.auto-style2 {
+        font-size: large;
+}
+.auto-style3 {
+        margin-top: 0;
+        margin-bottom: 0;
+}
+.auto-style5 {
+        margin-top: 0;
+        margin-bottom: 4px;
+}
+</style>
+</head>
+
+<body>
+
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style1">
+                <b style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: x-large; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: -webkit-left; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(204, 204, 204);">
+                Lab 12: Setting up your KVM Environment</b></td>
+        </tr>
+</tbody></table>
+<font color="black" size="+1" style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+In this lab, we will set up your Kernel Virtual Machine (KVM) environment for
+building and testing operating systems. I will show you how to
+create your own KVM image, create a user account on this image, and build and
+install the kernels on this image.<br>
+<br>
+<b>No submission for this lab (Show your TA that it works)</b></font><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;"><span class="Apple-converted-space">&nbsp;</span></span><br style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+<h3 style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+Table of Contents:</h3>
+<ul>
+        <li>
+        <p style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" class="auto-style3">
+        <a href="#Creating image">Creating your image</a></p>
+        </li>
+        <li>
+        <p style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" class="auto-style5">
+        <a href="#Boot image">Boot your image</a></p>
+        </li>
+        <li>
+        <p style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" class="auto-style5">
+        <a href="#setup account">Setting up you account</a></p>
+        </li>
+        <li>
+        <p style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" class="auto-style5">
+        <a href="#Building kernel">Building and installing your kernel</a></p>
+        </li>
+        <li>
+        <p style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" class="auto-style5">
+        <a href="#Other command">Other important commands</a></p>
+        </li>
+</ul>
+<p>&nbsp;</p>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong>
+                <a name="Creating image"></a>Creating Your Image</strong></td>
+        </tr>
+</tbody></table>
+<span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">
+You will first need to create a differential image off the base image. This is
+done in order to save space in your user account. In order to create and use
+your differential image<span class="Apple-converted-space">&nbsp;</span></span><b style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">you
+MUST be logged into cycle1.eecs.ku.edu if you wish to ssh into qemu with a port id.<span class="Apple-converted-space">&nbsp;</span></b><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">.<span class="Apple-converted-space">&nbsp;</span></span><br style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+<ol style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" type="2">
+        <li>Log into cycle1.eecs.ku.edu and create a directory for your kvm-image.
+        You should use -Y when logging in if you want to use the graphical KVM.
+        Also, you need at least 1.5GB to create the
+        differential image. You will need to free up some space if you are using
+        more than 68% or so of your allocated space.<pre>    amodarre@2041-1$ ssh -Y cycle1.eecs.ku.edu
+    amodarre@cycle1.eecs.ku.edu's password:
+    Last login: Fri Mar  1 13:55:48 2013 from 2041-1.eecs.ku.edu
+    You have used 63.31% of your allocated storage space.
+    amodarre@cycle1$ mkdir kvm-image; cd kvm-image
+    </pre>
+        </li>
+        <li>Create the differential image off the base image. The base image for
+        this lab is stored as /usr/share/kvm/EECS678-kvm-lab/eecs678_base.qcow on
+        cycle1.eecs.ku.edu. You may have to re-create your differential image if we
+        update this image for future projects. The command is:<br>
+        <br>
+        <b>&gt; qemu-img create -f qcow2 -b [base_image] [diff_image]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        This example creates a differential image named 'amir.qcow':<pre>    amodarre@cycle1$ qemu-img create -f qcow2 -b /usr/share/kvm/EECS678-kvm-lab/eecs678_base.qcow amir.qcow</pre>
+        </li>
+</ol>
+<p>&nbsp;</p>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong><a name="Boot image">
+                </a>Boot Your Image</strong></td>
+        </tr>
+</tbody></table>
+
+<span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">
+You will do this much more often. There are several options for booting into
+your image.</span><ul style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+        <li>The basic command for booting into your image is:<br>
+        <br>
+        <b>&gt; qemu-system-x86_64 -hda [boot-img] -m [mem]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        This example boots into the image 'amir.qcow' and simulates it on a
+        machine with 512M of memory:<pre>    amodarre@cycle1$ qemu-system-x86_64 -hda amir.qcow -m 512M
+    </pre>
+	To allow access to the image over a port, add <b>-redir tcp:[your-port]::22</b> at the end of the line (we will use this command instead):<pre>    amodarre@cycle1$ qemu-system-x86_64 -hda amir.qcow -m 512M -redir tcp:12345::22
+    </pre>
+        In order to ensure you select valid port numbers and students do not use the same port numbers, please use your
+        assigned port number listed on<span class="Apple-converted-space">&nbsp;</span><a href="kvm_port.html">this
+        page</a>.<br>
+	<br>	
+	This command will open a graphical interface that shows how your system
+        would boot on a real machine. This will only work if you have used the -Y
+        option when you logged into cycle1.eecs.ku.edu over ssh.
+        The debian login username will be <b>root</b> and the password will be <b>rootpw</b> on the first login.<br>
+        If you have a slow internet connection then consider using the -C option along with the -Y option for ssh.
+        <br>
+        <br>
+        </li>
+        <li>If we do not want to use the GUI, you can log into your booted machine over a port on the same machine
+        using the command:<br>
+        <br>
+        <b>&gt; qemu-system-x86_64 -hda [boot-img] -m [mem] -redir tcp:[your-port]::22 -nographic<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        And in another terminal on the same machine do:<br>
+        <br>
+        <b>&gt; ssh -p[your-port] -l [username] localhost<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        As an example, these commands connect the root user over the port 12345.<pre>    amodarre@cycle1$ qemu-system-x86_64 -hda amir.qcow -m 512M -redir tcp:12345::22
+    ...
+    amodarre@cycle1$ ssh -p12345 -l root localhost
+    </pre>
+        <b>Your root password is 'rootpw'</b>.<br>
+        <br>
+        Some other helpful options are:<br>
+        <br>
+        <ul>
+                <li><b>-nographic<span class="Apple-converted-space">&nbsp;</span></b>--
+                turns off the graphical interface. This is helpful when connecting
+                remotely.</li>
+                <li><b>-serial file:[filename]<span class="Apple-converted-space">&nbsp;</span></b>--
+                logs kernel output messages to the given file. This is helpful when
+                debugging kernels because any message that is printed with printk will
+                print to the given file.<br>
+                <br>
+                As an example, here is how I invoke the kvm when working remotely. The<span class="Apple-converted-space">&nbsp;</span><font face="arial">...</font><span class="Apple-converted-space">&nbsp;</span>indicates
+                the next command should be run in a separate terminal. I use the tail
+                command to watch the kernel output as it writes to<span class="Apple-converted-space">&nbsp;</span><font face="arial">serial.out</font>:<pre>    amodarre@cycle1$ qemu-system-x86_64 -hda amir.qcow -m 512M -redir tcp:12345::22 -nographic -serial file:./serial.out
+    ...
+    amodarre@cycle1$ ssh -p12345 -l root localhost
+    ...
+    amodarre@cycle1$ tail -f serial.out</pre>
+                </li>
+        </ul>
+        </li>
+</ul>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong>
+                <a name="setup account"></a>Setting up Your
+                Account</strong></td>
+        </tr>
+</tbody></table>
+<span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">
+Boot into your image as the root user. Your image comes with Debian 6.0
+pre-installed. Most software you will need is already installed.<span class="Apple-converted-space">&nbsp;</span></span><a href="#Other command" style="font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">The
+last section in this guide</a><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;"><span class="Apple-converted-space">&nbsp;</span>describes
+how to install new software on your KVM. The source code of the kernel we will
+use is stored on your image in<span class="Apple-converted-space">&nbsp;</span></span><font face="arial" style="color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">/kernel-src</font><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;"><span class="Apple-converted-space">&nbsp;</span>and
+the config file we will use is in<span class="Apple-converted-space">&nbsp;</span></span><font face="arial" style="color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">/configs</font><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">.
+We need to do a little more setup before we build our kernel.</span><ol style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" type="2">
+        <li>Create a user account for yourself:<br>
+        <br>
+        <b>&gt; adduser [username]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        This example creates an account for user 'amir'. After you have given the
+        user a password, you can ignore adding the other information:<pre>root@debian:~# adduser amir
+Adding user `amir' ...
+Adding new group `amir' (1000) ...
+Adding new user `amir' (1000) with group `amir' ...
+Creating home directory `/home/amir' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Changing the user information for amir
+Enter the new value, or press ENTER for the default
+        Full Name []: Amir Modarresi
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n]
+root@debian:~#
+</pre>
+        <br>
+        </li>
+        <li>Add your new user to the sudoers file:<pre>root@debian:~# vi /etc/sudoers
+  </pre>
+        This will open<span class="Apple-converted-space">&nbsp;</span><font face="arial">vi</font><span class="Apple-converted-space">&nbsp;</span>on<span class="Apple-converted-space">&nbsp;</span><font face="arial">/etc/sudoers</font>.
+        Add your new user to this file as shown:<pre># User privilege specification
+root ALL=(ALL) ALL
+amir ALL=(ALL) ALL
+</pre>
+          <br>
+          It may also be helpful to add yourself to the sudo group: root@debian:~# usermod -a -G sudo amir
+        </li>
+        <li>Next we want to move the kernel source (which we have created a folder for you) and the config file (which we have also moved to .config for you)  to the user's
+        home directory and change ownership to the user:<pre>root@debian:~# mkdir /home/amir/kernel
+root@debian:~# mv ~/linux-2.6.32.60 /home/amir/kernel/
+root@debian:~# chown -R amir:amir /home/amir/kernel
+</pre>
+          <br>
+        <br>
+        </li>
+	<li>We now need to install sudo on the kernel so the user can call commands with the rights sudo grants.
+	<pre> root@debian:~# apt-get install sudo </pre>
+	</li>
+        <li>Optionally, you can copy the .vimrc from /root to your user's home
+        directory (and change ownership to your user):<pre>root@debian:~# cp /root/.vimrc /home/amir/
+root@debian:~# chown amir:amir /home/amir/.vimrc
+  </pre>
+        </li>
+        <li>Finally, switch user to the new user you have just created:<pre>root@debian:~# su amir</pre>
+        </li>
+</ol>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong>
+                <a name="Building kernel"></a>Building and
+                Installing Your Kernel</strong></td>
+        </tr>
+</tbody></table>
+<span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); display: inline !important; float: none;">
+Building and installing the kernel on our Debian system is easy. Follow these
+simple instructions:</span><ol style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);" type="2">
+        <li>To build the kernel, run the command:<br>
+        <br>
+        <b>&gt; kvm-kernel-build [revision]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        <font face="arial">kvm-kernel-build</font><span class="Apple-converted-space">&nbsp;</span>is
+        actually a script. It's contents are shown below:<pre>#!/bin/sh
+rev=$1
+if [ -z "$rev" ]; then
+        echo "Usage: build64 <revision>"
+        exit 1
+fi
+make-kpkg --rootcmd fakeroot --initrd --revision=$rev kernel_image 2&gt;&amp;1 | tee build.log
+  </revision></pre>
+        This script takes a single argument, a revision number, which is used to
+        give a unique name to your built kernel package. You always need to run this
+        command from your kernel source directory. We will run it with sudo as the user. For example:<pre>amir@debian:~$ cd /home/amir/kernel/linux-2.6.32.60/
+amir@debian:~/kernel/linux-2.6.32.60$ sudo kvm-kernel-build 1
+  </pre>
+        This will build the kernel in the KVM. This takes some time (approximately
+        an hour and a half for a clean build). Go ahead and relax, <a href="https://xkcd.com/303/">check your favorite
+        website</a>, and bide your time until it completes the build (maybe take the quiz or complete course evaluations). If your screen goes black, you can press a key, like the down arrow, to show output again. When the build
+        process is complete, you should find a .deb file in the directory above your
+        kernel source (so use cd to go back one directory). If you want to scroll the ouput from the build, you can use shift + page up or page down to scroll.<br>
+        <br>
+        </li>
+        <li>To install your kernel, the command is:<br>
+        <br>
+        <b>&gt; dpkg -i [kernel-deb-pkg]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        You should run this command as root (using su then typing in the root password) as in:<pre>amir@debian:~/kernel# su
+Password:
+root@debian:home/amir/kernel$ dpkg -i linux-image-2.6.32.60_1_i386.deb
+Selecting previously deselected package linux-image-2.6.32.60.
+(Reading database ... 30041 files and directories currently installed.)
+Unpacking linux-image-2.6.32.60 (from linux-image-2.6.32.60_1_i386.deb) ...
+Done.
+Setting up linux-image-2.6.32.60 (1) ...
+Running depmod.
+Examining /etc/kernel/postinst.d.
+run-parts: executing /etc/kernel/postinst.d/initramfs-tools 2.6.32.60 /boot/vmlinuz-2.6.32.60
+update-initramfs: Generating /boot/initrd.img-2.6.32.60
+run-parts: executing /etc/kernel/postinst.d/zz-update-grub 2.6.32.60 /boot/vmlinuz-2.6.32.60
+Generating grub.cfg ...
+Found linux image: /boot/vmlinuz-2.6.32.60
+Found initrd image: /boot/initrd.img-2.6.32.60
+Found linux image: /boot/vmlinuz-2.6.32-5-686
+Found initrd image: /boot/initrd.img-2.6.32-5-686
+done
+  </pre>
+        When the command completes, the kernel is installed. Go back to being logged into your user using <b>su amir</b><br>
+        <br>
+        </li>
+        <li>Our installation should have updated the boot loader to select our
+        kernel on the next boot. To check that the bootloader is set up correctly,
+        do:<pre>amir@eecs678-kvm:~/kernel$ cat /boot/grub/grub.cfg | more
+  </pre>
+        You should see a line that reads:<pre>set default="0"
+  </pre>
+        The first 'menuentry' in this file should correspond to the kernel you just
+        built (i.e. the version number should match 2.6.32.60). The next time you
+        boot your kvm, it will have both the original kernel and the newly installed
+        kernel selectable from the boot menu. If you use the<span class="Apple-converted-space">&nbsp;</span><font face="arial">-nographic</font><span class="Apple-converted-space">&nbsp;</span>option,
+        you will not have the opportunity to select a kernel from the menu and it
+        will automatically boot the default kernel. To change the default boot
+        kernel, you need to change the<span class="Apple-converted-space">&nbsp;</span><font face="arial">GRUB_DEFAULT</font><span class="Apple-converted-space">&nbsp;</span>variable
+        in<span class="Apple-converted-space">&nbsp;</span><font face="arial">/etc/default/grub</font><span class="Apple-converted-space">&nbsp;</span>to
+        the number of the kernel in the boot menu that you want to boot into. The
+        kernels in the boot menu are listed in<span class="Apple-converted-space">&nbsp;</span><font face="arial">/boot/grub/grub.cfg</font><span class="Apple-converted-space">&nbsp;</span>and
+        are indexed at 0. If you change<span class="Apple-converted-space">&nbsp;</span><font face="arial">GRUB_DEFAULT</font>,
+        you need to update the grub menu by running (as root):<br>
+        <br>
+        <b>&gt; update-grub<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        For now, leave this option as<span class="Apple-converted-space">&nbsp;</span><font face="arial">GRUB_DEFAULT=0</font><span class="Apple-converted-space">&nbsp;</span>and
+        reboot your kvm (as root):<pre>amir@debian:~/kernel# su
+Password:
+root@debian:/home/amir/kernel# reboot
+
+Broadcast message from root@debian (pts/0) (Fri Mar  1 22:31:19 2013):
+The system is going down for reboot NOW!
+root@debian:/home/amir/kernel# Connection to localhost closed by remote host.
+Connection to localhost closed.
+  </pre>
+        This will kick you out of your kvm session. You need to wait for the KVM to
+        boot before you can log back in.<br>
+        <br>
+        </li>
+        <li>Next, we need to check that the kvm has booted into the newly built
+        kernel. Keep your KVM open for this terminal, open a new terminal on the cycle1 server, and go ahead and log back in through ssh. You can log in directly to
+        your newly created user account:<pre>amodarre@cycle1$ ssh -p12345 -l amir localhost
+amodarre@localhost's password:
+Linux debian 2.6.32.60 #1 SMP PREEMPT Fri Mar 1 21:56:30 CST 2013 i686
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+amir@debian:~$
+  </pre>
+        You should see that you are running kernel version 2.6.32.60. If you want to
+        double-check this from the command line inside KVM, you can do:<pre>amir@debian:~$ uname -a
+Linux eecs678-kvm 2.6.32.60 #1 SMP PREEMPT Fri Mar 1 21:56:30 CST 2013 i686 GNU/Linux</pre>
+        </li>
+</ol>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong>
+                <a name="Other command"></a>Other Important
+                Commands</strong></td>
+        </tr>
+</tbody></table>
+There are some important commands you should know for using your KVM. This is
+not a complete list. I will add more commands and information to this section as
+necessary.<ol type="2">
+        <li>If you would like to install or remove software, use the APT package
+        utility:<br>
+        <br>
+        <ul>
+                <li><b>&gt; apt-get install [package]<span class="Apple-converted-space">&nbsp;</span></b>--
+                install a package. You must be root to install software.</li>
+                <li><b>&gt; apt-get remove [package]<span class="Apple-converted-space">&nbsp;</span></b>--
+                remove a package. You must be root to remove software.</li>
+                <li><b>&gt; apt-cache search [string]<span class="Apple-converted-space">&nbsp;</span></b>--
+                search all available package lists for the given string. You can use
+                this utility to find software and package names.</li>
+        </ul>
+        <br>
+        <br>
+        </li>
+        <li>To transfer files to and from your KVM, use<span class="Apple-converted-space">&nbsp;</span><font face="arial">scp</font>:<br>
+        <br>
+        <b>&gt; scp [user@][src-host]:[src-file] [user@][dst-host]:[dst-file]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        You can omit the user and host information if it matches the environment you
+        are running the command in. In this example, I run<span class="Apple-converted-space">&nbsp;</span><font face="arial">scp</font><span class="Apple-converted-space">&nbsp;</span>from
+        the KVM to copy the file<span class="Apple-converted-space">&nbsp;</span><font face="arial">foo.pdf</font><span class="Apple-converted-space">&nbsp;</span>on
+        cycle1.eecs.ku.edu to my kernel directory in the KVM:<pre>amir@debian:~$ scp cycle1.eecs.ku.edu:~/Desktop/foo.txt /home/amir/kernel/linux-2.6.32.60/
+amodarre@cycle1.eecs.ku.edu's password:
+foo.txt                                                               100%  954KB 954.3KB/s   00:00
+amir@debian:~$
+    </pre>
+        This example, which is also run from within the KVM, copies<span class="Apple-converted-space">&nbsp;</span><font face="arial">foo.pdf</font><span class="Apple-converted-space">&nbsp;</span>from
+        the kvm to my Desktop on cycle1.eecs.ku.edu:<pre>amir@eecs678-kvm:~$ scp /home/amir/kernel/linux-2.6.32.60/foo.txt cycle1.eecs.ku.edu:~/Desktop/
+amodarre@cycle1.eecs.ku.edu's password:
+foo.txt                                                               100%  954KB 954.3KB/s   00:00
+amir@debian:~$
+    </pre>
+        </li>
+        <li>If you need to remove a built kernel, use<span class="Apple-converted-space">&nbsp;</span><font face="arial">dpkg</font>:<br>
+        <br>
+        <b>&gt; dpkg -r [kernel-package]<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        Note that, to remove a built kernel, you cannot be currently running that
+        same kernel. This example removes the kernel we built in this lab:<pre>root@debian:~# dpkg -r linux-image-2.6.32.60
+(Reading database ... 30089 files and directories currently installed.)
+Removing linux-image-2.6.32.60 ...
+Examining /etc/kernel/prerm.d.
+Examining /etc/kernel/postrm.d .
+run-parts: executing /etc/kernel/postrm.d/initramfs-tools 2.6.32.60 /boot/vmlinuz-2.6.32.60
+update-initramfs: Deleting /boot/initrd.img-2.6.32.60
+run-parts: executing /etc/kernel/postrm.d/zz-update-grub 2.6.32.60 /boot/vmlinuz-2.6.32.60
+Generating grub.cfg ...
+Found linux image: /boot/vmlinuz-2.6.32-5-686
+Found initrd image: /boot/initrd.img-2.6.32-5-686
+done
+  </pre>
+        Note that you might need to reconfigure your boot loader after you uninstall
+        the kernel package.<br>
+        <br>
+        In most cases, you will reinstall your built kernel over a kernel you have
+        previously installed. The<span class="Apple-converted-space">&nbsp;</span><font face="arial">reinstall-kernel</font><span class="Apple-converted-space">&nbsp;</span>script
+        provided with the second project simply uninstalls and reinstalls the
+        2.6.32.60 kernel in one command.<br>
+        <br>
+        </li>
+        <li>Finally, to exit the kvm, run<span class="Apple-converted-space">&nbsp;</span><font face="arial">halt</font><span class="Apple-converted-space">&nbsp;</span>(as
+        root) from your kvm terminal:<br>
+        <br>
+        <b>&gt; halt<span class="Apple-converted-space">&nbsp;</span></b><br>
+        <br>
+        For example:<pre>root@debian:~# halt
+
+Broadcast message from root@kvm (pts/0) (Thu Mar 21 19:58:54 2013):
+
+The system is going down for system halt NOW!
+  </pre>
+        </li>
+</ol>
+This completes the guide for setting up and using your KVM. There is no lab
+assignment this week. Please make sure you have completed this
+guide.<br>
+<br>
+<table style="width: 100%">
+        <tbody><tr>
+                <td bgcolor="#C0C0C0" class="auto-style2"><strong>
+                <a name="Other command0"></a>Debugging the Linux Kernel</strong></td>
+        </tr>
+</tbody></table>
+<p>Sometimes, it is necessary to add sometime to Linux kernel for experiment or
+fix a bug in the kernel. Debugging the kernel is a little bit different than
+debugging an application; because OS doesn't let any access from user to kernel
+mode directly. The following slides help you to understand how to debug the
+kernel.</p>
+<p><a href="debuggingkernel/Debugging%20Linux%20Kernel.pdf">Debugging the Linux
+Kernel</a></p>
+<p>&nbsp;</p>
+<p><a href="index.html">&lt; Back to the Lab Home Page</a></p>
+
+
+
+
+</body></html>    ( > \ k ‚ ” ž ¤ è é                           ‡å
